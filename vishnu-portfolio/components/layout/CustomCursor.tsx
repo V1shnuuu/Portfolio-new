@@ -1,95 +1,129 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import React, { useEffect, useState, useRef } from 'react';
+import { useMousePosition } from '@/hooks/useMousePosition';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 export function CustomCursor() {
+  const isFinePointer = useMediaQuery('(pointer: fine)');
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const isMobile = useMediaQuery('(max-width: 768px)');
+  
+  const mouse = useMousePosition();
+  const dotRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
 
-  const cursorX = useMotionValue(-100);
-  const cursorY = useMotionValue(-100);
+  // Position references for lerping
+  const ringPos = useRef({ x: 0, y: 0 });
+  const targetPos = useRef({ x: 0, y: 0 });
 
-  // Smooth springs for outer cursor
-  const springConfig = { damping: 25, stiffness: 250, mass: 0.5 };
-  const cursorXSpring = useSpring(cursorX, springConfig);
-  const cursorYSpring = useSpring(cursorY, springConfig);
-
+  // Update target coordinates
   useEffect(() => {
-    if (isMobile) return;
+    targetPos.current = { x: mouse.x, y: mouse.y };
+  }, [mouse]);
 
-    const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
+  // Lerp Animation Loop
+  useEffect(() => {
+    if (!isFinePointer) return;
+
+    let animationFrameId: number;
+
+    const animateRing = () => {
+      const dx = targetPos.current.x - ringPos.current.x;
+      const dy = targetPos.current.y - ringPos.current.y;
+
+      // Apply lerp factor 0.12
+      ringPos.current.x += dx * 0.12;
+      ringPos.current.y += dy * 0.12;
+
+      if (ringRef.current) {
+        ringRef.current.style.transform = `translate3d(${ringPos.current.x}px, ${ringPos.current.y}px, 0) translate(-50%, -50%)`;
+      }
+
+      animationFrameId = requestAnimationFrame(animateRing);
+    };
+
+    animateRing();
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isFinePointer]);
+
+  // Hide/Show cursor listeners and interactive element detection
+  useEffect(() => {
+    if (!isFinePointer) return;
+
+    // Apply cursor: none to body while custom cursor is mounted
+    const styleEl = document.createElement('style');
+    styleEl.innerHTML = `
+      body, a, button, input, textarea, select, [role="button"], .cursor-pointer {
+        cursor: none !important;
+      }
+    `;
+    document.head.appendChild(styleEl);
+
+    const handleMouseLeave = () => setIsVisible(false);
+    const handleMouseEnter = () => setIsVisible(true);
+    const handleMouseMove = () => {
       if (!isVisible) setIsVisible(true);
     };
 
-    const handleMouseLeave = () => {
-      setIsVisible(false);
-    };
-
-    const handleMouseEnter = () => {
-      setIsVisible(true);
-    };
-
-    window.addEventListener('mousemove', moveCursor);
     document.addEventListener('mouseleave', handleMouseLeave);
     document.addEventListener('mouseenter', handleMouseEnter);
+    window.addEventListener('mousemove', handleMouseMove);
 
-    // Hover detection for buttons and links
+    // Dynamic hover handler
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      const isInteractive = 
-        target.tagName === 'A' || 
-        target.tagName === 'BUTTON' || 
-        target.closest('a') !== null || 
+      if (!target) return;
+
+      const isInteractive =
+        target.tagName === 'A' ||
+        target.tagName === 'BUTTON' ||
+        target.closest('a') !== null ||
         target.closest('button') !== null ||
-        target.classList.contains('cursor-pointer') ||
-        target.closest('.cursor-pointer') !== null;
-      
+        target.hasAttribute('data-cursor') ||
+        target.closest('[data-cursor="pointer"]') !== null;
+
       setIsHovered(isInteractive);
     };
 
     window.addEventListener('mouseover', handleMouseOver);
 
     return () => {
-      window.removeEventListener('mousemove', moveCursor);
+      styleEl.remove();
       document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('mouseenter', handleMouseEnter);
+      window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseover', handleMouseOver);
     };
-  }, [cursorX, cursorY, isVisible, isMobile]);
+  }, [isFinePointer, isVisible]);
 
-  // Disable cursor on mobile or if cursor is not loaded yet
-  if (isMobile || !isVisible) return null;
+  // Only render on desktop-like systems with fine pointer coordinates
+  if (!isFinePointer || !isVisible) return null;
 
   return (
     <>
-      {/* Outer Follower Ring */}
-      <motion.div
-        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-accent-violet pointer-events-none z-[99999] -translate-x-1/2 -translate-y-1/2 mix-blend-screen"
+      {/* 1. Lerped Follower Ring */}
+      <div
+        ref={ringRef}
+        className="fixed top-0 left-0 pointer-events-none z-[9998] rounded-full border-2 border-accent-violet/50 transition-all duration-300 ease-out"
         style={{
-          x: cursorXSpring,
-          y: cursorYSpring,
-        }}
-        animate={{
-          scale: isHovered ? 1.5 : 1,
+          width: isHovered ? '56px' : '32px',
+          height: isHovered ? '56px' : '32px',
           backgroundColor: isHovered ? 'rgba(139, 92, 246, 0.15)' : 'rgba(139, 92, 246, 0)',
+          borderColor: isHovered ? 'rgba(139, 92, 246, 0.8)' : 'rgba(139, 92, 246, 0.5)',
         }}
-        transition={{ type: 'tween', ease: 'backOut', duration: 0.2 }}
       />
-      
-      {/* Inner Dot */}
-      <motion.div
-        className="fixed top-0 left-0 w-2.5 h-2.5 bg-accent-violet rounded-full pointer-events-none z-[99999] -translate-x-1/2 -translate-y-1/2 mix-blend-screen"
+
+      {/* 2. Immediate Dot */}
+      <div
+        ref={dotRef}
+        className="fixed top-0 left-0 pointer-events-none z-[9998] rounded-full bg-accent-violet transition-transform duration-200"
         style={{
-          x: cursorX,
-          y: cursorY,
-        }}
-        animate={{
-          scale: isHovered ? 0.5 : 1,
+          left: mouse.x,
+          top: mouse.y,
+          width: '8px',
+          height: '8px',
+          transform: `translate3d(-50%, -50%, 0) scale(${isHovered ? 2 : 1})`,
         }}
       />
     </>

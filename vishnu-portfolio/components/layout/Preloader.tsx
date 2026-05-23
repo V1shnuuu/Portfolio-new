@@ -1,67 +1,92 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 
 interface PreloaderProps {
   onComplete: () => void;
 }
 
-const words = ['CREATIVE DEVELOPER', 'UI/UX DESIGNER', 'ML ENGINEER', 'B VISHNU PRIYAN'];
-
 export function Preloader({ onComplete }: PreloaderProps) {
-  const [index, setIndex] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const [phase, setPhase] = useState(1);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    if (index === words.length - 1) {
-      const timeout = setTimeout(() => {
-        setLoading(false);
-        setTimeout(onComplete, 500); // Trigger complete after fade out finishes
-      }, 1200);
-      return () => clearTimeout(timeout);
-    }
+    // Phase 1 (0-0.5s): Background fades in (automatic via mount animation)
+    
+    // Phase 2 (0.5s): Reveal "VP"
+    const t2 = setTimeout(() => {
+      setPhase(2);
+    }, 500);
 
-    const interval = setTimeout(() => {
-      setIndex((prev) => prev + 1);
-    }, index === 0 ? 1000 : 700);
+    // Phase 3 (1.5s): Animate Progress Bar
+    const t3 = setTimeout(() => {
+      setPhase(3);
+    }, 1500);
 
-    return () => clearTimeout(interval);
-  }, [index, onComplete]);
+    // Phase 4 (2.5s): Fade out text & progress bar
+    const t4 = setTimeout(() => {
+      setPhase(4);
+    }, 2500);
+
+    // Slide up exit (3.0s)
+    const t5 = setTimeout(() => {
+      setIsVisible(false);
+    }, 3000);
+
+    return () => {
+      clearTimeout(t2);
+      clearTimeout(t3);
+      clearTimeout(t4);
+      clearTimeout(t5);
+    };
+  }, []);
 
   return (
-    <AnimatePresence>
-      {loading && (
-        <motion.div
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0, y: -100 }}
-          transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-[10000] flex flex-col items-center justify-center bg-background"
+    <AnimatePresence onExitComplete={onComplete}>
+      {isVisible && (
+        <m.div
+          initial={{ y: 0 }}
+          exit={{ 
+            y: '-100%',
+            transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } 
+          }}
+          className="fixed inset-0 bg-[#0a0a0a] z-[9999] flex flex-col items-center justify-center pointer-events-none select-none"
         >
-          {/* Main loader design */}
-          <div className="flex flex-col items-center max-w-lg px-6">
-            <motion.div
-              key={index}
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -30, opacity: 0 }}
-              transition={{ duration: 0.45, ease: 'easeOut' }}
-              className="font-display text-2xl md:text-4xl lg:text-5xl font-bold tracking-wider text-center"
-            >
-              {words[index]}
-            </motion.div>
+          <div className="relative flex flex-col items-center justify-center">
             
-            {/* Visual load indicator */}
-            <div className="w-48 h-[2px] bg-neutral-900 overflow-hidden relative rounded-full mt-8">
-              <motion.div
-                initial={{ left: '-100%' }}
-                animate={{ left: '0%' }}
-                transition={{ duration: 3, ease: 'easeInOut' }}
-                className="absolute inset-0 bg-accent-violet"
-              />
+            {/* Phase 2 & 3: Logo "VP" with Clip-path Reveal */}
+            <AnimatePresence>
+              {phase >= 2 && phase < 4 && (
+                <m.h1
+                  initial={{ clipPath: 'inset(100% 0% 0% 0%)', opacity: 0 }}
+                  animate={{ clipPath: 'inset(0% 0% 0% 0%)', opacity: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  className="font-display font-bold tracking-tighter text-center bg-gradient-to-r from-accent-violet to-accent-indigo bg-clip-text text-transparent text-[80px] md:text-[120px] leading-none"
+                >
+                  VP
+                </m.h1>
+              )}
+            </AnimatePresence>
+
+            {/* Phase 3: Progress Bar */}
+            <div className="h-[1px] w-[200px] mt-4 overflow-hidden relative">
+              <AnimatePresence>
+                {phase >= 3 && phase < 4 && (
+                  <m.div
+                    initial={{ width: 0 }}
+                    animate={{ width: '100%' }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1.0, ease: 'easeInOut' }}
+                    className="h-full bg-gradient-to-r from-accent-violet to-accent-indigo absolute left-0"
+                  />
+                )}
+              </AnimatePresence>
             </div>
+            
           </div>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

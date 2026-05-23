@@ -1,14 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useLenis } from '@/animations/useLenis';
-import { Preloader } from '@/components/layout/Preloader';
-import { CustomCursor } from '@/components/layout/CustomCursor';
-import { ScrollProgress } from '@/components/layout/ScrollProgress';
-import { Navbar } from '@/components/layout/Navbar';
-import { Footer } from '@/components/layout/Footer';
 
-// Sections
+// Section components
 import { Hero } from '@/components/sections/Hero';
 import { About } from '@/components/sections/About';
 import { Skills } from '@/components/sections/Skills';
@@ -19,44 +14,57 @@ import { Testimonials } from '@/components/sections/Testimonials';
 import { Contact } from '@/components/sections/Contact';
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Initialize Lenis smooth scroll
+  // Initialize Lenis smooth scroll globally on mount
   useLenis();
 
   return (
-    <>
-      {/* 1. Loader screen */}
-      <Preloader onComplete={() => setIsLoading(false)} />
+    <main>
+      
+      {/* 1. Hero / Home section */}
+      <Hero />
+      
+      {/* Divider */}
+      <div className="h-[1px] bg-white/5 mx-auto max-w-6xl" />
 
-      {/* 2. Page layout components */}
-      {!isLoading && (
-        <div className="relative min-h-screen flex flex-col overflow-hidden">
-          {/* Custom Cursor follower */}
-          <CustomCursor />
+      {/* 2. About biography section */}
+      <About />
 
-          {/* Scroll progress bar indicator */}
-          <ScrollProgress />
+      {/* Divider */}
+      <div className="h-[1px] bg-white/5 mx-auto max-w-6xl" />
 
-          {/* Header navigation bar */}
-          <Navbar />
+      {/* 3. Skills dashboard section */}
+      <Skills />
 
-          {/* Page main content grid */}
-          <main className="flex-grow">
-            <Hero />
-            <About />
-            <Skills />
-            <Projects />
-            <Experience />
-            <Services />
-            <Testimonials />
-            <Contact />
-          </main>
+      {/* Divider */}
+      <div className="h-[1px] bg-white/5 mx-auto max-w-6xl" />
 
-          {/* Site footer summary */}
-          <Footer />
-        </div>
-      )}
-    </>
+      {/* 4. Projects portfolio section */}
+      <Projects />
+
+      {/* Divider */}
+      <div className="h-[1px] bg-white/5 mx-auto max-w-6xl" />
+
+      {/* 5. Experience timeline section */}
+      <Experience />
+
+      {/* Divider */}
+      <div className="h-[1px] bg-white/5 mx-auto max-w-6xl" />
+
+      {/* 6. Services offerings section */}
+      <Services />
+
+      {/* Divider */}
+      <div className="h-[1px] bg-white/5 mx-auto max-w-6xl" />
+
+      {/* 7. Testimonials references section */}
+      <Testimonials />
+
+      {/* Divider */}
+      <div className="h-[1px] bg-white/5 mx-auto max-w-6xl" />
+
+      {/* 8. Contact form section */}
+      <Contact />
+
+    </main>
   );
 }

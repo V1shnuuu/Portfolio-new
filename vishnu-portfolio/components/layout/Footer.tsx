@@ -1,70 +1,127 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { m, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
-import { OWNER_NAME, SOCIAL_LINKS } from '@/lib/constants';
+import { NAV_LINKS, SOCIAL_LINKS } from '@/lib/constants';
+import { scrollToSection } from '@/lib/utils';
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const checkScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+
+    window.addEventListener('scroll', checkScroll);
+    return () => window.removeEventListener('scroll', checkScroll);
+  }, []);
 
   const handleScrollTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <footer className="w-full bg-surface border-t border-neutral-900 py-12 px-6 md:px-12 mt-auto">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    <footer className="w-full bg-[#0a0a0a] border-t border-white/5 py-12 px-6 md:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto flex flex-col gap-10">
         
-        {/* Left copyright section */}
-        <div className="flex flex-col items-center md:items-start gap-1">
-          <p className="font-body text-sm text-text-muted text-center md:text-left">
-            &copy; {currentYear} {OWNER_NAME}. All rights reserved.
-          </p>
-          <p className="font-mono text-[10px] text-text-faint uppercase tracking-wider">
-            Designed & Built with Next.js + GSAP
+        {/* Top Row: Logo & Nav Links */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-white/5">
+          <Link 
+            href="#home" 
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('#home');
+            }}
+            className="flex items-center"
+          >
+            <span className="font-display text-2xl font-bold bg-gradient-to-r from-accent-violet to-accent-indigo bg-clip-text text-transparent">
+              VP
+            </span>
+          </Link>
+          
+          <nav className="flex flex-wrap items-center justify-center gap-6">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection(link.href);
+                }}
+                className="font-body text-xs md:text-sm text-text-muted hover:text-white transition-colors duration-300 uppercase tracking-wider font-semibold"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+
+        {/* Middle Row: Tagline */}
+        <div className="text-center py-4">
+          <p className="font-body text-base md:text-lg text-text-muted italic leading-relaxed max-w-xl mx-auto">
+            "Building at the intersection of code, design, and machine intelligence."
           </p>
         </div>
 
-        {/* Center socials */}
-        <div className="flex items-center gap-6">
-          <a
-            href={SOCIAL_LINKS.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2.5 rounded-full bg-background border border-neutral-800 text-text-muted hover:text-text-primary hover:border-accent-violet transition-all duration-300"
-            aria-label="GitHub Profile"
-          >
-            <Github className="w-4 h-4" />
-          </a>
-          <a
-            href={SOCIAL_LINKS.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2.5 rounded-full bg-background border border-neutral-800 text-text-muted hover:text-text-primary hover:border-accent-violet transition-all duration-300"
-            aria-label="LinkedIn Profile"
-          >
-            <Linkedin className="w-4 h-4" />
-          </a>
-          <a
-            href={SOCIAL_LINKS.email}
-            className="p-2.5 rounded-full bg-background border border-neutral-800 text-text-muted hover:text-text-primary hover:border-accent-violet transition-all duration-300"
-            aria-label="Email Contact"
-          >
-            <Mail className="w-4 h-4" />
-          </a>
-        </div>
+        {/* Bottom Row: Legal & Social links */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-6 border-t border-white/5">
+          <p className="font-body text-xs md:text-sm text-text-muted text-center md:text-left">
+            &copy; 2025 B Vishnu Priyan. All rights reserved.
+          </p>
 
-        {/* Back to top scroll button */}
-        <button
-          onClick={handleScrollTop}
-          className="flex items-center gap-2 font-mono text-xs text-text-muted hover:text-text-primary transition-colors focus:outline-none"
-        >
-          Back to top
-          <span className="p-2 rounded-full bg-background border border-neutral-800 hover:border-accent-violet transition-colors">
-            <ArrowUp className="w-3.5 h-3.5" />
-          </span>
-        </button>
+          <div className="flex items-center gap-6">
+            <m.a
+              whileHover={{ scale: 1.1 }}
+              href={SOCIAL_LINKS.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-full bg-surface border border-white/5 text-text-muted hover:text-accent-violet transition-colors duration-300"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="w-4 h-4" />
+            </m.a>
+            <m.a
+              whileHover={{ scale: 1.1 }}
+              href={SOCIAL_LINKS.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-full bg-surface border border-white/5 text-text-muted hover:text-accent-violet transition-colors duration-300"
+              aria-label="GitHub"
+            >
+              <Github className="w-4 h-4" />
+            </m.a>
+            <m.a
+              whileHover={{ scale: 1.1 }}
+              href={SOCIAL_LINKS.email}
+              className="p-2.5 rounded-full bg-surface border border-white/5 text-text-muted hover:text-accent-violet transition-colors duration-300"
+              aria-label="Email"
+            >
+              <Mail className="w-4 h-4" />
+            </m.a>
+          </div>
+        </div>
 
       </div>
+
+      {/* Floating Scroll To Top Button */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <m.button
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            onClick={handleScrollTop}
+            className="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-gradient-to-r from-accent-violet to-accent-indigo text-white flex items-center justify-center z-50 shadow-[0_0_20px_rgba(139,92,246,0.35)] hover:shadow-[0_0_35px_rgba(139,92,246,0.65)] hover:scale-105 transition-all duration-300 focus:outline-none cursor-pointer"
+            aria-label="Scroll to top"
+          >
+            <ArrowUp className="w-5 h-5" />
+          </m.button>
+        )}
+      </AnimatePresence>
     </footer>
   );
 }

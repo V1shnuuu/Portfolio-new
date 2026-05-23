@@ -1,13 +1,12 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { Badge } from './Badge';
 import { fadeUp } from '@/animations/variants';
 
 interface SectionHeadingProps {
-  badge?: string;
+  number?: string;
   title: string;
   subtitle?: string;
   align?: 'left' | 'center';
@@ -15,7 +14,7 @@ interface SectionHeadingProps {
 }
 
 export function SectionHeading({
-  badge,
+  number,
   title,
   subtitle,
   align = 'center',
@@ -24,33 +23,44 @@ export function SectionHeading({
   const isLeft = align === 'left';
 
   return (
-    <motion.div
+    <m.div
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px 0px' }}
       variants={fadeUp}
       className={cn(
-        'flex flex-col mb-16 md:mb-24 max-w-3xl',
+        'flex flex-col mb-16 md:mb-20 max-w-3xl',
         isLeft ? 'items-start text-left' : 'items-center text-center mx-auto',
         className
       )}
     >
-      {badge && (
-        <Badge variant="primary" className="mb-4">
-          {badge}
-        </Badge>
+      {/* 1. Category/Number Prefix */}
+      {number && (
+        <span className="font-mono text-xs text-text-faint tracking-widest uppercase mb-3">
+          {number} //
+        </span>
       )}
       
-      <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+      {/* 2. Headline Display */}
+      <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
         {title}
       </h2>
+
+      {/* 3. Decorative Accent Line */}
+      <div 
+        className={cn(
+          'h-[2px] w-20 bg-accent-violet mt-5 mb-5 rounded-full',
+          !isLeft && 'mx-auto'
+        )} 
+      />
       
+      {/* 4. Subtitle Paragraph */}
       {subtitle && (
-        <p className="font-body text-base md:text-lg text-text-muted leading-relaxed max-w-2xl">
+        <p className="font-body text-sm md:text-base text-text-muted leading-relaxed max-w-xl">
           {subtitle}
         </p>
       )}
-    </motion.div>
+    </m.div>
   );
 }
 

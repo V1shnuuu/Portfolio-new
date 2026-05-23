@@ -5,22 +5,29 @@ import { motion } from 'framer-motion';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { GlowCard } from '@/components/ui/GlowCard';
 import { services } from '@/data/services';
-import { Layout, Brain, Figma, ArrowRight, PenTool } from 'lucide-react';
+import { Code2, Layers, Brain, Globe, Palette, Link, ArrowRight } from 'lucide-react';
 import { fadeUp, staggerContainer } from '@/animations/variants';
 
 export function Services() {
   const getIconComponent = (icon: string) => {
     switch (icon) {
-      case 'layout':
-        return Layout;
-      case 'brain':
+      case 'Code2':
+        return Code2;
+      case 'Layers':
+        return Layers;
+      case 'Brain':
         return Brain;
-      case 'figma':
-        return PenTool; // Figma equivalent
+      case 'Globe':
+        return Globe;
+      case 'Palette':
+        return Palette;
+      case 'Link':
+        return Link;
       default:
-        return Layout;
+        return Code2;
     }
   };
+
 
   return (
     <section id="services" className="py-20 md:py-28 relative px-6 bg-background">

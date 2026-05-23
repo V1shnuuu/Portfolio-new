@@ -4,13 +4,14 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { GlowCard } from '@/components/ui/GlowCard';
-import { skills } from '@/data/skills';
+import { skills, skillCategories } from '@/data/skills';
 import { cn } from '@/lib/utils';
 import { fadeUp, staggerContainer } from '@/animations/variants';
 
 export function Skills() {
-  const categories = ['All', 'Frontend', 'Machine Learning', 'UI/UX Design', 'Engineering'];
+  const categories = ['All', ...skillCategories];
   const [activeCategory, setActiveCategory] = useState('All');
+
 
   // Filter skills based on user selection
   const filteredSkills = activeCategory === 'All'

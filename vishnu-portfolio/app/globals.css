@@ -14,7 +14,12 @@
   --text-faint: #52525b;
   --accent-violet: #8b5cf6;
   --accent-indigo: #6366f1;
+  --accent-cyan: #00D9FF;
+  --accent-pink: #FF006E;
+  --accent-purple: #8338EC;
   --accent-glow: rgba(139, 92, 246, 0.15);
+  --accent-cyan-glow: rgba(0, 217, 255, 0.15);
+  --accent-pink-glow: rgba(255, 0, 110, 0.15);
 }
 
 * {
@@ -99,10 +104,112 @@ html.lenis, html.lenis body {
   overflow: hidden;
 }
 
-/* Utility classes */
+/* ============================================================ */
+/* Utility classes                                              */
+/* ============================================================ */
+
 .text-gradient {
   background: linear-gradient(135deg, var(--accent-violet) 0%, var(--accent-indigo) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.text-gradient-cyan {
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-tri {
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 50%, var(--accent-pink) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Page transition wrapper */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Lightbox backdrop */
+.lightbox-backdrop {
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+/* Modal backdrop */
+.modal-backdrop {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+}
+
+/* Filter tabs active pill */
+.filter-pill-active {
+  background: linear-gradient(135deg, var(--accent-violet), var(--accent-indigo));
+  color: white;
+}
+
+/* Pricing card highlight */
+.pricing-highlight {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(99, 102, 241, 0.05));
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+/* 3D card hover effect */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-3d:hover {
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+}
+
+/* Cyan glow button */
+.btn-cyan {
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.25);
+  color: #000;
+  font-weight: 600;
+}
+
+.btn-cyan:hover {
+  box-shadow: 0 0 40px rgba(0, 217, 255, 0.4);
+}
+
+/* Blog reading progress */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+  z-index: 100;
+  transition: width 0.1s linear;
+}
+
+/* Step form progress dot */
+.step-dot-active {
+  background: var(--accent-violet);
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.5);
+}
+
+/* Responsive grid for project filters */
+@layer utilities {
+  .filter-bar-scroll {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .filter-bar-scroll::-webkit-scrollbar {
+    display: none;
+  }
 }

@@ -2,9 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { m, AnimatePresence } from 'framer-motion';
-import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
-import { NAV_LINKS, SOCIAL_LINKS } from '@/lib/constants';
+import { Github, Linkedin, Mail, ArrowUp, Download } from 'lucide-react';
+import { NAV_LINKS, SOCIAL_LINKS, RESUME_URL } from '@/lib/constants';
 import { scrollToSection } from '@/lib/utils';
 
 export function Footer() {
@@ -23,40 +24,51 @@ export function Footer() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const pathname = usePathname();
+  const isHome = pathname === '/';
+
   return (
     <footer className="w-full bg-[#0a0a0a] border-t border-white/5 py-12 px-6 md:px-12 relative z-10">
       <div className="max-w-7xl mx-auto flex flex-col gap-10">
         
         {/* Top Row: Logo & Nav Links */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-white/5">
-          <Link 
-            href="#home" 
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('#home');
-            }}
-            className="flex items-center"
-          >
-            <span className="font-display text-2xl font-bold bg-gradient-to-r from-accent-violet to-accent-indigo bg-clip-text text-transparent">
-              VP
-            </span>
-          </Link>
+          <div className="flex flex-col items-center md:items-start gap-1">
+            <Link href="/" className="flex items-center">
+              <span className="font-display text-2xl font-bold bg-gradient-to-r from-accent-violet to-accent-indigo bg-clip-text text-transparent">
+                VP
+              </span>
+            </Link>
+            <span className="font-mono text-[9px] text-text-faint uppercase tracking-widest">Vishnu Priyan · Verix AI</span>
+          </div>
           
           <nav className="flex flex-wrap items-center justify-center gap-6">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(link.href);
-                }}
-                className="font-body text-xs md:text-sm text-text-muted hover:text-white transition-colors duration-300 uppercase tracking-wider font-semibold"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) => {
+              // Anchor links: smooth-scroll on home, navigate to /#hash on sub-pages
+              const href = link.type === 'anchor'
+                ? (isHome ? link.href : `/${link.href}`)
+                : link.href;
+              const onClick = (link.type === 'anchor' && isHome)
+                ? (e: React.MouseEvent) => { e.preventDefault(); scrollToSection(link.href); }
+                : undefined;
+              return (
+                <Link
+                  key={link.label}
+                  href={href}
+                  onClick={onClick}
+                  className="font-body text-xs md:text-sm text-text-muted hover:text-white transition-colors duration-300 uppercase tracking-wider font-semibold"
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
+
+          {/* Resume download */}
+          <a href={RESUME_URL} download className="font-mono text-xs text-text-faint hover:text-text-muted transition-colors flex items-center gap-1.5 uppercase tracking-wider">
+            <Download className="w-3.5 h-3.5" />
+            Resume
+          </a>
         </div>
 
 
@@ -70,7 +82,7 @@ export function Footer() {
         {/* Bottom Row: Legal & Social links */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-6 border-t border-white/5">
           <p className="font-body text-xs md:text-sm text-text-muted text-center md:text-left">
-            &copy; 2025 B Vishnu Priyan. All rights reserved.
+            &copy; 2026 B Vishnu Priyan. All rights reserved.
           </p>
 
           <div className="flex items-center gap-6">

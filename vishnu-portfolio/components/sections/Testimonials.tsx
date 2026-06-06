@@ -21,7 +21,7 @@ const placeholderTestimonials = [
     id: 't-2',
     name: 'Design Mentor',
     role: 'Senior Designer',
-    company: 'Revatura',
+    company: 'Revature',
     text: 'During his internship, Vishnu approached every design challenge with a clear user-first mindset. His Figma work was meticulous and his willingness to iterate based on feedback made every project better.',
     initials: 'DM',
   },

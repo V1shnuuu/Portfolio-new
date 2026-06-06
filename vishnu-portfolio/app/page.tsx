@@ -7,11 +7,13 @@ import { useLenis } from '@/animations/useLenis';
 import { Hero } from '@/components/sections/Hero';
 import { About } from '@/components/sections/About';
 import { Skills } from '@/components/sections/Skills';
-import { Projects } from '@/components/sections/Projects';
+import { ProjectsTeaser } from '@/components/sections/ProjectsTeaser';
 import { Experience } from '@/components/sections/Experience';
-import { Services } from '@/components/sections/Services';
+import { StatsSection } from '@/components/sections/StatsSection';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { Contact } from '@/components/sections/Contact';
+
+const Divider = () => <div className="h-[1px] bg-white/5 mx-auto max-w-6xl" />;
 
 export default function Home() {
   // Initialize Lenis smooth scroll globally on mount
@@ -19,52 +21,43 @@ export default function Home() {
 
   return (
     <main>
-      
       {/* 1. Hero / Home section */}
       <Hero />
-      
-      {/* Divider */}
-      <div className="h-[1px] bg-white/5 mx-auto max-w-6xl" />
+
+      <Divider />
 
       {/* 2. About biography section */}
       <About />
 
-      {/* Divider */}
-      <div className="h-[1px] bg-white/5 mx-auto max-w-6xl" />
+      <Divider />
 
       {/* 3. Skills dashboard section */}
       <Skills />
 
-      {/* Divider */}
-      <div className="h-[1px] bg-white/5 mx-auto max-w-6xl" />
+      <Divider />
 
-      {/* 4. Projects portfolio section */}
-      <Projects />
+      {/* 4. Projects teaser — 3 featured cards → /projects */}
+      <ProjectsTeaser />
 
-      {/* Divider */}
-      <div className="h-[1px] bg-white/5 mx-auto max-w-6xl" />
+      <Divider />
 
       {/* 5. Experience timeline section */}
       <Experience />
 
-      {/* Divider */}
-      <div className="h-[1px] bg-white/5 mx-auto max-w-6xl" />
+      <Divider />
 
-      {/* 6. Services offerings section */}
-      <Services />
+      {/* 6. Animated stats strip */}
+      <StatsSection />
 
-      {/* Divider */}
-      <div className="h-[1px] bg-white/5 mx-auto max-w-6xl" />
+      <Divider />
 
       {/* 7. Testimonials references section */}
       <Testimonials />
 
-      {/* Divider */}
-      <div className="h-[1px] bg-white/5 mx-auto max-w-6xl" />
+      <Divider />
 
       {/* 8. Contact form section */}
       <Contact />
-
     </main>
   );
 }

@@ -4,11 +4,12 @@ import { ThemeProvider } from '@/components/layout/ThemeProvider';
 import { LenisProvider } from '@/components/layout/LenisProvider';
 import { LayoutProvider } from '@/components/layout/LayoutProvider';
 import { LazyMotion, domAnimation } from 'framer-motion';
+import { VercelAnalytics } from '@/components/layout/Analytics';
 
 export const metadata: Metadata = {
   title: 'Vishnu Priyan — Creative Developer & ML Engineer',
   description: 'Computer Science student at Chennai Institute of Technology building ML systems, full-stack apps, and premium digital experiences. Hackathon finalist. UI/UX designer. Based in Chennai, India.',
-  keywords: ['Vishnu Priyan', 'Creative Developer', 'Machine Learning', 'UI UX Designer', 'React Developer', 'Chennai', 'Portfolio', 'TensorFlow', 'Full Stack', 'CIT Chennai'],
+  keywords: ['Vishnu Priyan', 'Creative Developer', 'Machine Learning', 'UI UX Designer', 'React Developer', 'Chennai', 'Portfolio', 'TensorFlow', 'Full Stack', 'CIT Chennai', 'Verix AI', 'AI Chatbot', 'Voice Agent', 'Workflow Automation'],
   authors: [{ name: 'B Vishnu Priyan', url: 'https://vishnupriyan.dev' }],
   creator: 'B Vishnu Priyan',
   metadataBase: new URL('https://vishnupriyan.dev'),
@@ -53,6 +54,7 @@ export default function RootLayout({
             <LazyMotion features={domAnimation}>
               <LayoutProvider>
                 {children}
+                <VercelAnalytics />
               </LayoutProvider>
             </LazyMotion>
           </LenisProvider>

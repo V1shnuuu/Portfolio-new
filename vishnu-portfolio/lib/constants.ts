@@ -78,8 +78,8 @@ export const BLOG_CATEGORIES = [
 // Stats for animated metrics section
 // ============================================================
 export const PORTFOLIO_STATS = [
-  { value: 6, suffix: '+', label: 'Projects Shipped' },
-  { value: 3, suffix: '', label: 'Hackathons Competed' },
+  { value: 15, suffix: '+', label: 'Projects Shipped' },
+  { value: 10, suffix: '+', label: 'Hackathons Competed' },
   { value: 10, suffix: '+', label: 'Technologies' },
   { value: 100, suffix: '%', label: 'Passion for Craft' },
 ] as const;

@@ -105,7 +105,7 @@ export function CustomCursor() {
       {/* 1. Lerped Follower Ring */}
       <div
         ref={ringRef}
-        className="fixed top-0 left-0 pointer-events-none z-[9998] rounded-full border-2 border-accent-violet/50 transition-all duration-300 ease-out"
+        className="fixed top-0 left-0 pointer-events-none z-[100000] rounded-full border-2 border-accent-violet/50 transition-all duration-300 ease-out"
         style={{
           width: isHovered ? '56px' : '32px',
           height: isHovered ? '56px' : '32px',
@@ -117,7 +117,7 @@ export function CustomCursor() {
       {/* 2. Immediate Dot */}
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 pointer-events-none z-[9998] rounded-full bg-accent-violet transition-transform duration-200"
+        className="fixed top-0 left-0 pointer-events-none z-[100000] rounded-full bg-accent-violet transition-transform duration-200"
         style={{
           left: mouse.x,
           top: mouse.y,

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { m, AnimatePresence } from 'framer-motion';
 import {
   Brain, Code2, Layers, Globe, Palette, Link as LinkIcon,
@@ -14,42 +15,13 @@ import { CountUp } from '@/components/ui/CountUp';
 import { PageTransition } from '@/components/ui/PageTransition';
 import { VERIX_AI } from '@/lib/constants';
 import { staggerContainer } from '@/animations/variants';
+import dynamic from 'next/dynamic';
+
+const RotatingSphere = dynamic(() => import('@/components/ui/RotatingSphere').then(mod => mod.RotatingSphere), { ssr: false });
 
 const ICON_MAP: Record<string, React.ElementType> = {
   Brain, Code2, Layers, Globe, Palette, Link: LinkIcon, Zap, Mic,
 };
-
-// ── 3D Rotating Cube ──────────────────────────────────────────
-function RotatingCube() {
-  return (
-    <div className="relative w-32 h-32" style={{ perspective: '600px' }}>
-      <m.div
-        animate={{ rotateY: 360, rotateX: 15 }}
-        transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-        className="w-full h-full relative"
-        style={{ transformStyle: 'preserve-3d' }}
-      >
-        {/* 6 faces */}
-        {[
-          { transform: 'translateZ(64px)', bg: 'from-accent-cyan/20 to-accent-purple/20', label: 'AI' },
-          { transform: 'rotateY(180deg) translateZ(64px)', bg: 'from-accent-pink/20 to-accent-purple/20', label: 'ML' },
-          { transform: 'rotateY(90deg) translateZ(64px)', bg: 'from-accent-violet/20 to-accent-cyan/20', label: 'API' },
-          { transform: 'rotateY(-90deg) translateZ(64px)', bg: 'from-accent-indigo/20 to-accent-pink/20', label: 'UI' },
-          { transform: 'rotateX(90deg) translateZ(64px)', bg: 'from-accent-cyan/10 to-accent-violet/20', label: '🚀' },
-          { transform: 'rotateX(-90deg) translateZ(64px)', bg: 'from-accent-purple/10 to-accent-pink/20', label: '⚡' },
-        ].map((face, i) => (
-          <div
-            key={i}
-            className={`absolute inset-0 border border-white/10 rounded-xl bg-gradient-to-br ${face.bg} backdrop-blur-sm flex items-center justify-center`}
-            style={{ transform: face.transform }}
-          >
-            <span className="font-display font-bold text-white/60 text-lg">{face.label}</span>
-          </div>
-        ))}
-      </m.div>
-    </div>
-  );
-}
 
 // ── Service Card ──────────────────────────────────────────────
 function ServiceCard({ service, onGetSolution, onCalendly }: {
@@ -181,85 +153,104 @@ export function ServicesPageClient() {
   const [showInquiryModal, setShowInquiryModal] = useState(false);
   const [showCalendly, setShowCalendly] = useState(false);
 
+  React.useEffect(() => {
+    if (showInquiryModal || showCalendly) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [showInquiryModal, showCalendly]);
+
   return (
     <>
       {/* ── Inquiry Modal ── */}
-      <AnimatePresence>
-        {showInquiryModal && (
-          <>
-            <m.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[200] modal-backdrop"
-              onClick={() => setShowInquiryModal(false)}
-            />
-            <m.div
-              initial={{ opacity: 0, scale: 0.92, y: 30 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.96, y: 10 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed inset-x-4 top-1/2 -translate-y-1/2 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-[540px] z-[201] bg-surface border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl max-h-[90vh] overflow-y-auto"
-            >
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="font-display text-2xl font-bold text-white">Get Custom Solution</h2>
-                <button onClick={() => setShowInquiryModal(false)} className="p-1.5 rounded-lg hover:bg-white/10 text-text-muted hover:text-white transition-colors">
-                  <X className="w-5 h-5" />
-                </button>
+      {typeof window !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {showInquiryModal && (
+            <>
+              <m.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-[9998] modal-backdrop"
+                onClick={() => setShowInquiryModal(false)}
+              />
+              <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 pointer-events-none">
+                <m.div
+                  initial={{ opacity: 0, scale: 0.92, y: 30 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.96, y: 10 }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  className="w-full md:w-[540px] bg-surface border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl max-h-[90vh] overflow-y-auto pointer-events-auto"
+                >
+                  <div className="flex items-center justify-between mb-6">
+                    <h2 className="font-display text-2xl font-bold text-white">Get Custom Solution</h2>
+                    <button onClick={() => setShowInquiryModal(false)} className="p-1.5 rounded-lg hover:bg-white/10 text-text-muted hover:text-white transition-colors">
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+                  <MultiStepForm onClose={() => setShowInquiryModal(false)} />
+                </m.div>
               </div>
-              <MultiStepForm onClose={() => setShowInquiryModal(false)} />
-            </m.div>
-          </>
-        )}
-      </AnimatePresence>
+            </>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
 
       {/* ── Calendly Modal ── */}
-      <AnimatePresence>
-        {showCalendly && (
-          <>
-            <m.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[200] modal-backdrop"
-              onClick={() => setShowCalendly(false)}
-            />
-            <m.div
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed inset-4 md:inset-20 z-[201] bg-surface border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col"
-            >
-              <div className="flex items-center justify-between p-4 border-b border-white/5">
-                <h2 className="font-display text-lg font-bold text-white">Schedule a Consultation</h2>
-                <button onClick={() => setShowCalendly(false)} className="p-1.5 rounded-lg hover:bg-white/10 text-text-muted hover:text-white transition-colors">
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-              <div className="flex-1 flex items-center justify-center p-8">
-                <div className="text-center">
-                  <Calendar className="w-12 h-12 text-accent-cyan mx-auto mb-4" />
-                  <p className="font-body text-text-muted mb-4">
-                    Calendly integration coming soon. For now, book directly via email.
-                  </p>
-                  <a
-                    href={`mailto:${VERIX_AI.contactEmail}?subject=Consultation Request`}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-purple text-black font-mono text-sm font-bold hover:brightness-110 transition-all"
-                  >
-                    Email to Schedule
-                  </a>
-                  <p className="font-mono text-xs text-text-faint mt-3">
-                    Or: <a href={VERIX_AI.calendlyUrl} target="_blank" rel="noopener noreferrer" className="text-accent-cyan hover:underline">
-                      {VERIX_AI.calendlyUrl}
-                    </a>
-                  </p>
+      {typeof window !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {showCalendly && (
+            <>
+              <m.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-[9998] modal-backdrop"
+                onClick={() => setShowCalendly(false)}
+              />
+              <m.div
+                initial={{ opacity: 0, scale: 0.92 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="fixed inset-4 md:inset-20 z-[9999] bg-surface border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col"
+              >
+                <div className="flex items-center justify-between p-4 border-b border-white/5">
+                  <h2 className="font-display text-lg font-bold text-white">Schedule a Consultation</h2>
+                  <button onClick={() => setShowCalendly(false)} className="p-1.5 rounded-lg hover:bg-white/10 text-text-muted hover:text-white transition-colors">
+                    <X className="w-5 h-5" />
+                  </button>
                 </div>
-              </div>
-            </m.div>
-          </>
-        )}
-      </AnimatePresence>
+                <div className="flex-1 flex items-center justify-center p-8">
+                  <div className="text-center">
+                    <Calendar className="w-12 h-12 text-accent-cyan mx-auto mb-4" />
+                    <p className="font-body text-text-muted mb-4">
+                      Calendly integration coming soon. For now, book directly via email.
+                    </p>
+                    <a
+                      href={`mailto:${VERIX_AI.contactEmail}?subject=Consultation Request`}
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-purple text-black font-mono text-sm font-bold hover:brightness-110 transition-all"
+                    >
+                      Email to Schedule
+                    </a>
+                    <p className="font-mono text-xs text-text-faint mt-3">
+                      Or: <a href={VERIX_AI.calendlyUrl} target="_blank" rel="noopener noreferrer" className="text-accent-cyan hover:underline">
+                        {VERIX_AI.calendlyUrl}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </m.div>
+            </>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
 
       <PageTransition>
         <main className="min-h-screen pb-20">
@@ -328,14 +319,14 @@ export function ServicesPageClient() {
                   </m.div>
                 </div>
 
-                {/* 3D Cube */}
+                {/* 3D Sphere */}
                 <m.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
-                  className="flex-shrink-0 hidden lg:flex items-center justify-center w-64 h-64"
+                  className="relative flex-shrink-0 hidden lg:flex items-center justify-center w-[500px] h-[500px] xl:w-[600px] xl:h-[600px]"
                 >
-                  <RotatingCube />
+                  <RotatingSphere />
                 </m.div>
               </div>
             </div>

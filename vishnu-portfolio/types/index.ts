@@ -133,19 +133,49 @@ export interface BlogPost {
   id: string;
   slug: string;
   title: string;
+  subtitle?: string;
   excerpt: string;
   category: string;
   tags: string[];
   readTime: number; // minutes
   date: string; // ISO date string
+  createdAt?: string;
+  updatedAt?: string;
   featured: boolean;
   image: string;
+  status?: BlogStatus;
+  views?: number;
+  likes?: number;
+  comments?: BlogComment[];
+  seoTitle?: string;
+  seoDescription?: string;
+  authorId?: string;
   author: {
     name: string;
     avatar?: string;
     initials: string;
+    bio?: string;
+    socials?: {
+      website?: string;
+      linkedin?: string;
+      github?: string;
+    };
   };
   content?: string; // MDX content or HTML string
+}
+
+export type BlogStatus = 'draft' | 'published' | 'archived';
+
+export interface BlogComment {
+  id: string;
+  blogId: string;
+  authorId: string;
+  authorName: string;
+  authorInitials: string;
+  content: string;
+  parentComment?: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 // ============================================================
@@ -171,4 +201,18 @@ export interface ContactFormData {
 // ============================================================
 
 export type ProjectFilterValue = 'all' | 'ai' | 'web' | 'design' | 'blockchain';
-export type BlogFilterValue = 'all' | 'ai' | 'web' | 'design' | 'career';
+export type BlogFilterValue =
+  | 'all'
+  | 'technology'
+  | 'ai'
+  | 'machine-learning'
+  | 'web'
+  | 'business'
+  | 'travel'
+  | 'education'
+  | 'sports'
+  | 'programming'
+  | 'react'
+  | 'nextjs'
+  | 'design'
+  | 'career';

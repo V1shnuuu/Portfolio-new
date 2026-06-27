@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
 import { blogPosts } from '@/data/blog';
 import { Breadcrumb } from '@/components/ui/Breadcrumb';
 import { BlogDetailClient } from '@/components/sections/BlogDetailClient';
@@ -14,9 +13,15 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const post = blogPosts.find(p => p.slug === params.slug);
-  if (!post) return {};
+  if (!post) {
+    return {
+      title: 'Blog Article - Vishnu Priyan',
+      description: 'Read articles and saved local drafts from the Vishnu Priyan portfolio blog.',
+    };
+  }
+
   return {
-    title: `${post.title} — Vishnu Priyan`,
+    title: `${post.title} - Vishnu Priyan`,
     description: post.excerpt,
     openGraph: {
       title: post.title,
@@ -27,23 +32,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default function BlogDetailPage({ params }: PageProps) {
   const post = blogPosts.find(p => p.slug === params.slug);
-  if (!post) notFound();
-
   const related = blogPosts
-    .filter(p => p.id !== post.id && p.category === post.category)
+    .filter(p => post && p.id !== post.id && p.category === post.category)
     .slice(0, 2);
 
   return (
     <main className="min-h-screen pt-28 pb-20 px-6">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <Breadcrumb
           items={[
             { label: 'Blog', href: '/blog' },
-            { label: post.title },
+            { label: post?.title || 'Article' },
           ]}
           className="mb-8"
         />
-        <BlogDetailClient post={post} relatedPosts={related} />
+        <BlogDetailClient post={post || null} relatedPosts={related} slug={params.slug} />
       </div>
     </main>
   );

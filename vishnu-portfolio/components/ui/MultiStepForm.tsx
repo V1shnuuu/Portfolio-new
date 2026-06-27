@@ -61,10 +61,53 @@ export function MultiStepForm({ onClose, className }: MultiStepFormProps) {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
-    // TODO: Connect to your backend / Formspree / email API
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE",
+          name: formData.name,
+          email: formData.email,
+          subject: `Service Booking Inquiry: ${formData.service}`,
+          message: `
+Service: ${formData.service}
+Budget: ${formData.budget}
+Timeline: ${formData.timeline}
+Company: ${formData.company || 'None'}
+
+Description:
+${formData.description}
+          `,
+          from_name: "Portfolio Multi-Step Booking Form",
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setIsSubmitted(true);
+        setFormData({
+          service: '',
+          budget: '',
+          timeline: '',
+          description: '',
+          name: '',
+          email: '',
+          company: '',
+        });
+      } else {
+        console.error("Web3Forms Error:", result);
+        alert(result.message || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form to Web3Forms:", error);
+      alert("Failed to send booking inquiry. Please check your network and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const inputClass = "w-full bg-white/5 border border-white/10 rounded-xl p-3.5 text-white text-sm placeholder:text-text-faint focus:border-accent-violet/60 focus:ring-1 focus:ring-accent-violet/30 focus:outline-none transition-all duration-200";

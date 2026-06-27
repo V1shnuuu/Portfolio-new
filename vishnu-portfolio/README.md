@@ -32,6 +32,17 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+### Owner-Only Blog CRUD Setup
+
+To keep blog create/update/delete actions restricted to you:
+
+1. Copy `.env.example` to `.env.local`.
+2. Set a strong value for `BLOG_OWNER_PASSWORD`.
+3. Optionally set `BLOG_OWNER_SESSION_TOKEN` to a separate long random string.
+4. Restart the dev server after changing env values.
+
+Only sessions that unlock owner mode with this password can use write APIs.
+
 ---
 
 ## Build & Deploy

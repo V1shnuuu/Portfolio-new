@@ -12,7 +12,7 @@ export const blogPosts: BlogPost[] = [
     readTime: 7,
     date: '2025-01-15',
     featured: true,
-    image: '/images/blog/ai-agents.jpg',
+    image: '/images/blog/ai-agents.png',
     author: {
       name: 'B Vishnu Priyan',
       initials: 'VP',
@@ -104,7 +104,7 @@ At Verix AI, we build custom agents for businesses ready to automate intelligent
     readTime: 6,
     date: '2025-01-08',
     featured: false,
-    image: '/images/blog/voice-ai.jpg',
+    image: '/images/blog/voice-ai.png',
     author: {
       name: 'B Vishnu Priyan',
       initials: 'VP',
@@ -160,7 +160,7 @@ Voice AI is ready for production. The question isn't whether to use it — it's 
     readTime: 10,
     date: '2024-12-20',
     featured: false,
-    image: '/images/blog/ml-healthcare.jpg',
+    image: '/images/blog/ml-healthcare.png',
     author: {
       name: 'B Vishnu Priyan',
       initials: 'VP',
@@ -226,7 +226,7 @@ Healthcare ML is humbling. The technical challenges are solvable. The domain exp
     readTime: 8,
     date: '2024-12-10',
     featured: true,
-    image: '/images/blog/nextjs-portfolio.jpg',
+    image: '/images/blog/nextjs-portfolio.png',
     author: {
       name: 'B Vishnu Priyan',
       initials: 'VP',

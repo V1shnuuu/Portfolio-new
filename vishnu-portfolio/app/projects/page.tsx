@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { Github, ExternalLink, ArrowUpRight } from 'lucide-react';
 import { projects } from '@/data/projects';
 import { Project, ProjectFilterValue } from '@/types';
@@ -58,18 +59,29 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
         className="h-full flex flex-col gap-4 p-6 bg-surface border border-white/5 hover:border-accent-violet/30 rounded-2xl transition-colors duration-300"
         glowColor="rgba(139,92,246,0.1)"
       >
-        {/* Top: Image placeholder */}
-        <div className="w-full aspect-video rounded-xl bg-surface-elevated flex items-center justify-center relative overflow-hidden">
-          <span className="font-mono text-5xl font-bold text-white/5">
-            {project.category.slice(0, 2).toUpperCase()}
-          </span>
-          <div className="absolute top-3 left-3">
+        {/* Top: Image Area */}
+        <div className="w-full aspect-video rounded-xl bg-surface-elevated flex items-center justify-center relative overflow-hidden group/img">
+          {project.image ? (
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover transition-transform duration-700 group-hover/img:scale-105"
+            />
+          ) : (
+            <span className="font-mono text-5xl font-bold text-white/5">
+              {project.category.slice(0, 2).toUpperCase()}
+            </span>
+          )}
+          <div className="absolute inset-0 bg-gradient-to-br from-accent-violet/5 to-transparent pointer-events-none" />
+          <div className="absolute top-3 left-3 z-10">
             <span className={`font-mono text-[9px] font-semibold uppercase tracking-wider border px-2.5 py-1 rounded-full ${getCategoryColor(project.category)}`}>
               {project.category}
             </span>
           </div>
-          <div className="absolute top-3 right-3">
-            <span className="font-mono text-[9px] text-text-faint border border-white/5 px-2 py-1 rounded-full">
+          <div className="absolute top-3 right-3 z-10">
+            <span className="font-mono text-[9px] text-text-faint border border-white/5 px-2 py-1 rounded-full bg-background/50 backdrop-blur-sm">
               {project.year}
             </span>
           </div>

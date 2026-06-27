@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { m } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Github, ExternalLink } from 'lucide-react';
 import { projects } from '@/data/projects';
 import { Project } from '@/types';
@@ -73,11 +74,22 @@ export function ProjectsTeaser() {
                   glowColor="rgba(139,92,246,0.1)"
                 >
                   {/* Image area */}
-                  <div className="w-full aspect-video rounded-xl bg-surface-elevated flex items-center justify-center relative overflow-hidden">
-                    <span className="font-mono text-5xl font-bold text-white/5">
-                      {project.category.slice(0, 2).toUpperCase()}
-                    </span>
-                    <div className="absolute top-3 left-3">
+                  <div className="w-full aspect-video rounded-xl bg-surface-elevated flex items-center justify-center relative overflow-hidden group/img">
+                    {project.image ? (
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw"
+                        className="object-cover transition-transform duration-700 group-hover/img:scale-105"
+                      />
+                    ) : (
+                      <span className="font-mono text-5xl font-bold text-white/5">
+                        {project.category.slice(0, 2).toUpperCase()}
+                      </span>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent-violet/5 to-transparent pointer-events-none" />
+                    <div className="absolute top-3 left-3 z-10">
                       <span className={`font-mono text-[9px] uppercase tracking-wider border px-2.5 py-1 rounded-full font-semibold ${getCategoryColor(project.category)}`}>
                         {project.category}
                       </span>

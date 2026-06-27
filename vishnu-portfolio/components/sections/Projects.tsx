@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { m } from 'framer-motion';
+import Image from 'next/image';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { GlowCard } from '@/components/ui/GlowCard';
 import { projects } from '@/data/projects';
@@ -72,12 +73,19 @@ export function Projects() {
                     className="relative w-full aspect-video bg-surface-elevated rounded-2xl border border-white/10 hover:border-accent-violet/40 hover:scale-[1.02] transition-all duration-500 overflow-hidden group flex items-center justify-center p-0 cursor-pointer"
                     glowColor="rgba(139, 92, 246, 0.12)"
                   >
-                    {/* IMAGE_PLACEHOLDER: When real images are added, they should use next/image with priority for above-fold images. */}
-                    
-                    {/* Big Category Text Indicator */}
-                    <span className="font-mono text-8xl md:text-9xl font-bold tracking-tighter text-text-faint/15 select-none transition-colors duration-500 group-hover:text-text-faint/25">
-                      {categorySig}
-                    </span>
+                    {project.image ? (
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 55vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    ) : (
+                      <span className="font-mono text-8xl md:text-9xl font-bold tracking-tighter text-text-faint/15 select-none transition-colors duration-500 group-hover:text-text-faint/25">
+                        {categorySig}
+                      </span>
+                    )}
 
                     {/* Category Pill Tag */}
                     <div className="absolute top-4 left-4 z-20">

@@ -33,9 +33,37 @@ function GeneralInquiryForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    await new Promise(r => setTimeout(r, 1500)); // TODO: connect to email API
-    setSubmitting(false);
-    setSubmitted(true);
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE",
+          name: form.name,
+          email: form.email,
+          subject: form.subject || "New Project Inquiry",
+          message: form.message,
+          from_name: "Portfolio General Inquiry",
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setSubmitted(true);
+        setForm({ name: '', email: '', subject: '', message: '' });
+      } else {
+        console.error("Web3Forms Error:", result);
+        alert(result.message || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form to Web3Forms:", error);
+      alert("Failed to send message. Please check your network and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const inputClass = "w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white text-sm placeholder:text-text-faint focus:border-accent-violet/60 focus:ring-1 focus:ring-accent-violet/20 focus:outline-none transition-all duration-200";
@@ -78,9 +106,38 @@ function NewsletterForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    await new Promise(r => setTimeout(r, 1000)); // TODO: connect to Brevo/Mailchimp
-    setSubmitting(false);
-    setSubmitted(true);
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE",
+          name: name || "Anonymous",
+          email: email,
+          subject: "New Newsletter Subscription",
+          message: `${name || "Someone"} has subscribed to your AI Insights newsletter with the email: ${email}`,
+          from_name: "Portfolio Newsletter Sub",
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setSubmitted(true);
+        setEmail('');
+        setName('');
+      } else {
+        console.error("Web3Forms Error:", result);
+        alert(result.message || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form to Web3Forms:", error);
+      alert("Failed to subscribe. Please check your network and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const inputClass = "w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white text-sm placeholder:text-text-faint focus:border-accent-cyan/60 focus:ring-1 focus:ring-accent-cyan/20 focus:outline-none transition-all duration-200";

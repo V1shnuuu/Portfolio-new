@@ -14,19 +14,43 @@ export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formState.name || !formState.email || !formState.message) return;
 
     setIsSubmitting(true);
 
-    // Simulate API delay
-    // TODO: Connect to Formspree or email API
-    setTimeout(() => {
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE",
+          name: formState.name,
+          email: formState.email,
+          subject: formState.subject || "New Message from Portfolio",
+          message: formState.message,
+          from_name: "Portfolio Contact Form",
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setIsSubmitted(true);
+        setFormState({ name: '', email: '', subject: '', message: '' });
+      } else {
+        console.error("Web3Forms Error:", result);
+        alert(result.message || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form to Web3Forms:", error);
+      alert("Failed to send message. Please check your network and try again.");
+    } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormState({ name: '', email: '', subject: '', message: '' });
-    }, 1500);
+    }
   };
 
   const contactMethods = [

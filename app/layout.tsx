@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   authors: [{ name: 'B Vishnu Priyan', url: 'https://vishnupriyan.dev' }],
   creator: 'B Vishnu Priyan',
   metadataBase: new URL('https://vishnupriyan.dev'),
+  icons: {
+    icon: '/favicon.svg',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_IN',

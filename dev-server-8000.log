@@ -1,0 +1,75 @@
+
+> vishnu-portfolio@0.1.0 dev
+> next dev -p 8000
+
+  ▲ Next.js 14.2.15
+  - Local:        http://localhost:8000
+  - Environments: .env.local
+  - Experiments (use with caution):
+    · optimizeCss
+
+ ✓ Starting...
+ ✓ Ready in 2.7s
+ ○ Compiling /blog ...
+ ✓ Compiled /blog in 4.8s (1928 modules)
+ GET /blog 200 in 4701ms
+ GET /_next/static/webpack/87304c390573182a.webpack.hot-update.json 404 in 5036ms
+ GET /blog 200 in 75ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 1153ms (1193 modules)
+ GET /favicon.ico 200 in 1211ms
+ GET /blog 200 in 109ms
+ GET /blog 200 in 31ms
+ ○ Compiling /blog/[slug] ...
+ ✓ Compiled /blog/[slug] in 583ms (1976 modules)
+ GET /blog/what-are-ai-agents 200 in 1156ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1027ms (2000 modules)
+ ○ Compiling /projects ...
+ ✓ Compiled /projects in 676ms (2012 modules)
+ ○ Compiling /services ...
+ ✓ Compiled /services in 3.7s (3208 modules)
+ ○ Compiling /contact ...
+ ✓ Compiled /contact in 787ms (3221 modules)
+ ✓ Compiled in 1867ms (3221 modules)
+ ✓ Compiled in 276ms (1422 modules)
+ ✓ Compiled in 197ms (1422 modules)
+ ✓ Compiled in 259ms (1422 modules)
+ ✓ Compiled in 310ms (1422 modules)
+ ✓ Compiled in 187ms (1422 modules)
+ ✓ Compiled in 282ms (1422 modules)
+ ✓ Compiled in 1611ms (3235 modules)
+ ✓ Compiled in 775ms (3235 modules)
+ ✓ Compiled /api/auth/owner in 346ms (1842 modules)
+ GET /api/auth/owner 200 in 422ms
+ GET /api/auth/owner 200 in 101ms
+ GET /api/auth/owner 200 in 101ms
+ GET /api/auth/owner 200 in 424ms
+ ✓ Compiled in 587ms (3264 modules)
+ GET /api/auth/owner 200 in 11ms
+ GET /api/auth/owner 200 in 10ms
+ ✓ Compiled in 540ms (3264 modules)
+ GET /api/auth/owner 200 in 10ms
+ GET /api/auth/owner 200 in 11ms
+ ✓ Compiled in 366ms (1422 modules)
+ ✓ Compiled in 723ms (3264 modules)
+ ✓ Compiled in 349ms (1422 modules)
+ ✓ Compiled in 312ms (1422 modules)
+ ✓ Compiled in 380ms (1422 modules)
+ ✓ Compiled in 748ms (1422 modules)
+ GET /blog 200 in 401ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 808ms (1844 modules)
+ GET /favicon.ico 200 in 941ms
+ ✓ Compiled /api/auth/owner in 347ms (1870 modules)
+ GET /api/auth/owner 200 in 407ms
+ GET /api/auth/owner 200 in 412ms
+   Reload env: .env.local
+ ✓ Compiled in 887ms (3278 modules)
+ GET /api/auth/owner 200 in 20ms
+ GET /api/auth/owner 200 in 21ms
+ GET /api/auth/owner 200 in 51ms
+ GET /api/auth/owner 200 in 52ms
+ POST /api/auth/owner 200 in 98ms
+ DELETE /api/auth/owner 200 in 42ms
+ POST /api/auth/owner 200 in 106ms

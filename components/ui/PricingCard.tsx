@@ -53,7 +53,7 @@ export function PricingCard({ tier, accentColor = 'violet', onSelect }: PricingC
               accent.glow,
               '-translate-y-2'
             )
-          : 'bg-surface border-white/10 hover:border-white/20'
+          : 'bg-surface border-text-primary/10 hover:border-text-primary/20'
       )}
     >
       {/* Popular Badge */}
@@ -77,7 +77,7 @@ export function PricingCard({ tier, accentColor = 'violet', onSelect }: PricingC
           {tier.name}
         </p>
         <div className="flex items-baseline gap-1">
-          <span className="font-display text-3xl md:text-4xl font-bold text-white">
+          <span className="font-display text-3xl md:text-4xl font-bold text-text-primary">
             {tier.price}
           </span>
           {tier.period && (
@@ -107,8 +107,8 @@ export function PricingCard({ tier, accentColor = 'violet', onSelect }: PricingC
         className={cn(
           'w-full py-3 rounded-xl font-mono text-xs font-bold uppercase tracking-widest transition-all duration-300 hover:brightness-110 active:scale-95',
           tier.highlighted
-            ? cn(accent.button, 'text-white')
-            : 'border border-white/10 text-white hover:border-white/30 bg-white/5'
+            ? cn(accent.button, 'text-text-primary')
+            : 'border border-text-primary/10 text-text-primary hover:border-text-primary/30 bg-slate-900/5'
         )}
       >
         {tier.cta}

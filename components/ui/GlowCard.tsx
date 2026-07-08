@@ -36,7 +36,7 @@ export function GlowCard({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={cn(
-        'relative overflow-hidden rounded-2xl border border-neutral-800 bg-surface p-6 transition-all duration-300',
+        'relative overflow-hidden rounded-2xl border border-black/5 bg-surface p-6 transition-all duration-300 shadow-sm hover:shadow-md',
         className
       )}
       {...props}

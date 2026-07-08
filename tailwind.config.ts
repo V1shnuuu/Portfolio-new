@@ -10,13 +10,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#0a0a0a',
-        surface: '#111111',
-        'surface-elevated': '#1a1a1a',
+        background: '#f8fafc',
+        surface: '#ffffff',
+        'surface-elevated': '#f1f5f9',
+        border: {
+          default: '#0f172a0d',
+        },
         text: {
-          primary: '#ffffff',
-          muted: '#a1a1aa',
-          faint: '#52525b',
+          primary: '#0f172a',
+          muted: '#475569',
+          faint: '#64748b',
         },
         accent: {
           violet: '#8b5cf6',

@@ -107,7 +107,7 @@ export function Contact() {
             className="lg:col-span-5 flex flex-col gap-6 text-left"
           >
             {/* Display Header */}
-            <h3 className="font-display text-4xl md:text-5xl font-bold text-white leading-tight">
+            <h3 className="font-display text-4xl md:text-5xl font-bold text-text-primary leading-tight">
               Get in touch.
             </h3>
 
@@ -133,7 +133,7 @@ export function Contact() {
                         href={method.href}
                         target={method.label !== 'Email' ? '_blank' : undefined}
                         rel={method.label !== 'Email' ? 'noopener noreferrer' : undefined}
-                        className="font-body text-sm text-white hover:text-accent-violet transition-colors duration-300 underline-offset-4 hover:underline"
+                        className="font-body text-sm text-text-primary hover:text-accent-violet transition-colors duration-300 underline-offset-4 hover:underline"
                       >
                         {method.value}
                       </a>
@@ -144,7 +144,7 @@ export function Contact() {
             </div>
 
             {/* Availability notes */}
-            <p className="font-body text-xs text-text-faint mt-4 border-t border-white/5 pt-6 max-w-sm">
+            <p className="font-body text-xs text-text-faint mt-4 border-t border-text-primary/5 pt-6 max-w-sm">
               Based in Chennai, India. Open to remote & on-site opportunities in India and Taiwan.
             </p>
           </m.div>
@@ -159,7 +159,7 @@ export function Contact() {
             variants={slideInRight}
             className="lg:col-span-7 w-full"
           >
-            <div className="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8">
+            <div className="bg-white/[0.03] backdrop-blur-xl border border-text-primary/10 rounded-2xl p-6 md:p-8">
               
               <AnimatePresence mode="wait">
                 {isSubmitted ? (
@@ -170,7 +170,7 @@ export function Contact() {
                     className="flex flex-col items-center justify-center text-center py-16 gap-4"
                   >
                     <CheckCircle2 className="w-12 h-12 text-accent-violet animate-bounce" />
-                    <h4 className="font-display text-xl font-bold text-white">
+                    <h4 className="font-display text-xl font-bold text-text-primary">
                       Message Sent Successfully!
                     </h4>
                     <p className="font-body text-sm text-text-muted max-w-sm">
@@ -195,7 +195,7 @@ export function Contact() {
                         value={formState.name}
                         onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                         placeholder="Your Name"
-                        className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white text-sm placeholder:text-text-faint focus:border-accent-violet/60 focus:ring-2 focus:ring-accent-violet/20 focus:outline-none transition-all duration-200"
+                        className="w-full bg-slate-900/5 border border-text-primary/10 rounded-xl p-4 text-text-primary text-sm placeholder:text-text-faint focus:border-accent-violet/60 focus:ring-2 focus:ring-accent-violet/20 focus:outline-none transition-all duration-200"
                       />
                     </div>
 
@@ -207,7 +207,7 @@ export function Contact() {
                         value={formState.email}
                         onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                         placeholder="Your Email"
-                        className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white text-sm placeholder:text-text-faint focus:border-accent-violet/60 focus:ring-2 focus:ring-accent-violet/20 focus:outline-none transition-all duration-200"
+                        className="w-full bg-slate-900/5 border border-text-primary/10 rounded-xl p-4 text-text-primary text-sm placeholder:text-text-faint focus:border-accent-violet/60 focus:ring-2 focus:ring-accent-violet/20 focus:outline-none transition-all duration-200"
                       />
                     </div>
 
@@ -218,7 +218,7 @@ export function Contact() {
                         value={formState.subject}
                         onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
                         placeholder="Subject (Optional)"
-                        className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white text-sm placeholder:text-text-faint focus:border-accent-violet/60 focus:ring-2 focus:ring-accent-violet/20 focus:outline-none transition-all duration-200"
+                        className="w-full bg-slate-900/5 border border-text-primary/10 rounded-xl p-4 text-text-primary text-sm placeholder:text-text-faint focus:border-accent-violet/60 focus:ring-2 focus:ring-accent-violet/20 focus:outline-none transition-all duration-200"
                       />
                     </div>
 
@@ -230,7 +230,7 @@ export function Contact() {
                         value={formState.message}
                         onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                         placeholder="Your Message"
-                        className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white text-sm placeholder:text-text-faint focus:border-accent-violet/60 focus:ring-2 focus:ring-accent-violet/20 focus:outline-none transition-all duration-200 resize-none"
+                        className="w-full bg-slate-900/5 border border-text-primary/10 rounded-xl p-4 text-text-primary text-sm placeholder:text-text-faint focus:border-accent-violet/60 focus:ring-2 focus:ring-accent-violet/20 focus:outline-none transition-all duration-200 resize-none"
                       />
                     </div>
 
@@ -238,11 +238,11 @@ export function Contact() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-gradient-to-r from-accent-violet to-accent-indigo text-white font-medium rounded-xl py-4 flex items-center justify-center gap-2 hover:scale-[1.02] hover:brightness-110 active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:pointer-events-none cursor-pointer text-sm uppercase tracking-wider"
+                      className="w-full bg-gradient-to-r from-accent-violet to-accent-indigo text-text-primary font-medium rounded-xl py-4 flex items-center justify-center gap-2 hover:scale-[1.02] hover:brightness-110 active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:pointer-events-none cursor-pointer text-sm uppercase tracking-wider"
                     >
                       {isSubmitting ? (
                         <>
-                          <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                           </svg>

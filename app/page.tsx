@@ -13,7 +13,7 @@ import { StatsSection } from '@/components/sections/StatsSection';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { Contact } from '@/components/sections/Contact';
 
-const Divider = () => <div className="h-[1px] bg-white/5 mx-auto max-w-6xl" />;
+const Divider = () => <div className="h-[1px] bg-slate-900/5 mx-auto max-w-6xl" />;
 
 export default function Home() {
   // Initialize Lenis smooth scroll globally on mount

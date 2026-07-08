@@ -21,7 +21,7 @@ export function ProjectsTeaser() {
       'Computer Vision': 'text-accent-cyan border-accent-cyan/30 bg-accent-cyan/10',
       'Full Stack': 'text-accent-violet border-accent-violet/30 bg-accent-violet/10',
     };
-    return map[category] || 'text-text-muted border-white/10 bg-white/5';
+    return map[category] || 'text-text-muted border-text-primary/10 bg-slate-900/5';
   };
 
   return (
@@ -39,12 +39,12 @@ export function ProjectsTeaser() {
           <div className="flex items-end justify-between mb-12">
             <div>
               <span className="font-mono text-xs text-accent-violet uppercase tracking-widest">03 /</span>
-              <h2 className="font-display text-4xl md:text-5xl font-bold text-white mt-1">Selected Work</h2>
+              <h2 className="font-display text-4xl md:text-5xl font-bold text-text-primary mt-1">Selected Work</h2>
               <p className="font-body text-text-muted mt-2">Real products. Real impact. Built with intention.</p>
             </div>
             <Link
               href="/projects"
-              className="hidden md:inline-flex items-center gap-2 font-mono text-xs font-semibold text-text-muted hover:text-white transition-colors uppercase tracking-wider group"
+              className="hidden md:inline-flex items-center gap-2 font-mono text-xs font-semibold text-text-muted hover:text-text-primary transition-colors uppercase tracking-wider group"
             >
               View All Work
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -70,7 +70,7 @@ export function ProjectsTeaser() {
               >
                 <GlowCard
                   onClick={() => setSelectedProject(project)}
-                  className="h-full flex flex-col gap-4 p-6 bg-surface border border-white/5 hover:border-accent-violet/30 rounded-2xl transition-colors duration-300 cursor-pointer group"
+                  className="h-full flex flex-col gap-4 p-6 bg-surface border border-text-primary/5 hover:border-accent-violet/30 rounded-2xl transition-colors duration-300 cursor-pointer group"
                   glowColor="rgba(139,92,246,0.1)"
                 >
                   {/* Image area */}
@@ -84,7 +84,7 @@ export function ProjectsTeaser() {
                         className="object-cover transition-transform duration-700 group-hover/img:scale-105"
                       />
                     ) : (
-                      <span className="font-mono text-5xl font-bold text-white/5">
+                      <span className="font-mono text-5xl font-bold text-text-primary/5">
                         {project.category.slice(0, 2).toUpperCase()}
                       </span>
                     )}
@@ -97,7 +97,7 @@ export function ProjectsTeaser() {
                   </div>
 
                   {/* Content */}
-                  <h3 className="font-display text-lg font-bold text-white group-hover:text-accent-violet transition-colors">
+                  <h3 className="font-display text-lg font-bold text-text-primary group-hover:text-accent-violet transition-colors">
                     {project.shortTitle}
                   </h3>
                   <p className="font-body text-sm text-text-muted leading-relaxed line-clamp-2 flex-1">
@@ -114,11 +114,11 @@ export function ProjectsTeaser() {
                   </div>
 
                   {/* Footer */}
-                  <div className="flex items-center justify-between pt-3 border-t border-white/5">
+                  <div className="flex items-center justify-between pt-3 border-t border-text-primary/5">
                     <span className="font-mono text-xs text-accent-violet">View Details →</span>
                     <div className="flex items-center gap-3">
                       {project.github && (
-                        <a href={project.github} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()} className="text-text-faint hover:text-white transition-colors" aria-label="GitHub">
+                        <a href={project.github} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()} className="text-text-faint hover:text-text-primary transition-colors" aria-label="GitHub">
                           <Github className="w-4 h-4" />
                         </a>
                       )}
@@ -133,7 +133,7 @@ export function ProjectsTeaser() {
           <div className="mt-8 text-center md:hidden">
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 text-white font-mono text-xs font-bold uppercase tracking-wider hover:border-white/30 transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-text-primary/10 text-text-primary font-mono text-xs font-bold uppercase tracking-wider hover:border-text-primary/30 transition-all"
             >
               View All Projects <ArrowRight className="w-4 h-4" />
             </Link>

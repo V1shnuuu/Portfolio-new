@@ -68,7 +68,7 @@ export function Services() {
                 className="w-full h-full"
               >
                 <GlowCard 
-                  className="h-full flex flex-col justify-between p-8 bg-surface border border-white/5 hover:border-accent-violet/40 hover:-translate-y-1.5 transition-all duration-500 rounded-2xl cursor-default"
+                  className="h-full flex flex-col justify-between p-8 bg-surface border border-text-primary/5 hover:border-accent-violet/40 hover:-translate-y-1.5 transition-all duration-500 rounded-2xl cursor-default"
                   glowColor="rgba(139, 92, 246, 0.08)"
                 >
                   <div>
@@ -78,7 +78,7 @@ export function Services() {
                     </div>
 
                     {/* Title */}
-                    <h4 className="font-display text-xl font-bold text-white mt-6">
+                    <h4 className="font-display text-xl font-bold text-text-primary mt-6">
                       {service.title}
                     </h4>
 

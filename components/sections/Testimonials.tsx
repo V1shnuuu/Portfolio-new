@@ -70,7 +70,7 @@ export function Testimonials() {
           {placeholderTestimonials.map((testimonial) => (
             <m.div key={testimonial.id} variants={fadeUp}>
               <GlowCard 
-                className="h-full flex flex-col justify-between p-8 bg-background border border-white/5 hover:border-accent-violet/40 hover:shadow-[0_0_30px_rgba(139,92,246,0.1)] transition-all duration-500 rounded-2xl relative"
+                className="h-full flex flex-col justify-between p-8 bg-background border border-text-primary/5 hover:border-accent-violet/40 hover:shadow-[0_0_30px_rgba(139,92,246,0.1)] transition-all duration-500 rounded-2xl relative"
                 glowColor="rgba(139, 92, 246, 0.08)"
               >
                 <div>
@@ -86,12 +86,12 @@ export function Testimonials() {
                 </div>
 
                 {/* Profile row */}
-                <div className="flex items-center gap-4 pt-6 border-t border-white/5">
-                  <div className="w-11 h-11 rounded-full bg-surface-elevated flex items-center justify-center font-display font-bold text-xs text-accent-violet border border-white/5">
+                <div className="flex items-center gap-4 pt-6 border-t border-text-primary/5">
+                  <div className="w-11 h-11 rounded-full bg-surface-elevated flex items-center justify-center font-display font-bold text-xs text-accent-violet border border-text-primary/5">
                     {testimonial.initials}
                   </div>
                   <div>
-                    <h5 className="font-display text-sm font-bold text-white">
+                    <h5 className="font-display text-sm font-bold text-text-primary">
                       {testimonial.name}
                     </h5>
                     <span className="font-body text-[10px] text-text-faint uppercase tracking-wider block mt-0.5">
@@ -123,7 +123,7 @@ export function Testimonials() {
                     className="w-full h-full"
                   >
                     <GlowCard 
-                      className="h-full flex flex-col justify-between p-8 bg-background border border-white/5 rounded-2xl relative"
+                      className="h-full flex flex-col justify-between p-8 bg-background border border-text-primary/5 rounded-2xl relative"
                       glowColor="rgba(139, 92, 246, 0.08)"
                     >
                       <div>
@@ -139,12 +139,12 @@ export function Testimonials() {
                       </div>
 
                       {/* Profile row */}
-                      <div className="flex items-center gap-4 pt-6 border-t border-white/5">
-                        <div className="w-11 h-11 rounded-full bg-surface-elevated flex items-center justify-center font-display font-bold text-xs text-accent-violet border border-white/5">
+                      <div className="flex items-center gap-4 pt-6 border-t border-text-primary/5">
+                        <div className="w-11 h-11 rounded-full bg-surface-elevated flex items-center justify-center font-display font-bold text-xs text-accent-violet border border-text-primary/5">
                           {testimonial.initials}
                         </div>
                         <div>
-                          <h5 className="font-display text-sm font-bold text-white">
+                          <h5 className="font-display text-sm font-bold text-text-primary">
                             {testimonial.name}
                           </h5>
                           <span className="font-body text-[10px] text-text-faint uppercase tracking-wider block mt-0.5">
@@ -163,7 +163,7 @@ export function Testimonials() {
           <div className="flex items-center gap-4 mt-6">
             <button
               onClick={handlePrev}
-              className="p-3 rounded-full border border-white/5 hover:border-accent-violet/40 text-text-muted hover:text-white transition-colors cursor-pointer"
+              className="p-3 rounded-full border border-text-primary/5 hover:border-accent-violet/40 text-text-muted hover:text-text-primary transition-colors cursor-pointer"
               aria-label="Previous Testimonial"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -173,7 +173,7 @@ export function Testimonials() {
             </span>
             <button
               onClick={handleNext}
-              className="p-3 rounded-full border border-white/5 hover:border-accent-violet/40 text-text-muted hover:text-white transition-colors cursor-pointer"
+              className="p-3 rounded-full border border-text-primary/5 hover:border-accent-violet/40 text-text-muted hover:text-text-primary transition-colors cursor-pointer"
               aria-label="Next Testimonial"
             >
               <ChevronRight className="w-5 h-5" />

@@ -32,12 +32,12 @@ export function Skills() {
         />
 
         {/* 1. Header Marquee Ticker (Right to Left / Opposite direction) */}
-        <div className="w-full overflow-hidden border-y border-white/5 py-5 mb-16 select-none bg-background/30 pointer-events-none">
+        <div className="w-full overflow-hidden border-y border-text-primary/5 py-5 mb-16 select-none bg-background/30 pointer-events-none">
           <Marquee 
             speed={40} 
             direction="right"
             gradient={false}
-            className="font-mono text-base uppercase tracking-widest text-white/20"
+            className="font-mono text-base uppercase tracking-widest text-text-primary/20"
           >
             {marqueeSkills.map((skill, idx) => (
               <span key={`ticker-2-${skill}-${idx}`} className="inline-flex items-center">
@@ -52,7 +52,7 @@ export function Skills() {
         {/* PART A: Interactive Skill Bars by Category                                */}
         {/* ========================================================================= */}
         <div className="w-full max-w-4xl mx-auto mb-24">
-          <h3 className="font-display text-2xl font-bold text-white mb-6 text-center md:text-left">
+          <h3 className="font-display text-2xl font-bold text-text-primary mb-6 text-center md:text-left">
             Core Competencies
           </h3>
 
@@ -65,8 +65,8 @@ export function Skills() {
                 className={cn(
                   'px-4 py-2 rounded-full font-body text-xs font-semibold uppercase tracking-wider transition-all duration-300 border focus:outline-none cursor-pointer',
                   activeCategory === category
-                    ? 'bg-accent-violet text-white border-accent-violet shadow-[0_0_15px_rgba(139,92,246,0.25)]'
-                    : 'bg-background text-text-muted border-white/5 hover:text-white hover:border-white/10'
+                    ? 'bg-accent-violet text-text-primary border-accent-violet shadow-[0_0_15px_rgba(139,92,246,0.25)]'
+                    : 'bg-background text-text-muted border-text-primary/5 hover:text-text-primary hover:border-text-primary/10'
                 )}
               >
                 {category}
@@ -75,7 +75,7 @@ export function Skills() {
           </div>
 
           {/* Skill Bars list */}
-          <div className="flex flex-col gap-6 bg-background/50 border border-white/5 rounded-2xl p-6 md:p-8 backdrop-blur-sm min-h-[300px]">
+          <div className="flex flex-col gap-6 bg-background/50 border border-text-primary/5 rounded-2xl p-6 md:p-8 backdrop-blur-sm min-h-[300px]">
             <AnimatePresence mode="popLayout">
               {filteredSkills.map((skill) => (
                 <m.div
@@ -87,7 +87,7 @@ export function Skills() {
                   className="flex flex-col md:flex-row md:items-center justify-between gap-2"
                 >
                   {/* Skill Name */}
-                  <span className="font-display text-sm font-semibold text-white min-w-[150px]">
+                  <span className="font-display text-sm font-semibold text-text-primary min-w-[150px]">
                     {skill.name}
                   </span>
 
@@ -117,7 +117,7 @@ export function Skills() {
         {/* PART B: Featured Skill Grid with Custom SVG Circular Rings                */}
         {/* ========================================================================= */}
         <div className="w-full">
-          <h3 className="font-display text-2xl font-bold text-white mb-8 text-center">
+          <h3 className="font-display text-2xl font-bold text-text-primary mb-8 text-center">
             Top Specialties
           </h3>
 
@@ -140,11 +140,11 @@ export function Skills() {
                   className="w-full"
                 >
                   <GlowCard 
-                    className="p-5 flex items-center justify-between bg-surface border border-white/5 hover:border-accent-violet/40 hover:shadow-[0_0_30px_rgba(139,92,246,0.15)] transition-all duration-500 rounded-xl"
+                    className="p-5 flex items-center justify-between bg-surface border border-text-primary/5 hover:border-accent-violet/40 hover:shadow-[0_0_30px_rgba(139,92,246,0.15)] transition-all duration-500 rounded-xl"
                     glowColor="rgba(139, 92, 246, 0.08)"
                   >
                     <div>
-                      <h4 className="font-display text-base font-bold text-white tracking-wide">
+                      <h4 className="font-display text-base font-bold text-text-primary tracking-wide">
                         {skill.name}
                       </h4>
                       <span className="font-mono text-[9px] uppercase tracking-widest text-text-faint block mt-1">

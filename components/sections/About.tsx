@@ -32,7 +32,7 @@ export function About() {
             className="lg:col-span-7 flex flex-col gap-6"
           >
             {/* Pull Quote */}
-            <h3 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
+            <h3 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-text-primary leading-tight">
               I build things that think, look good, and work flawlessly.
             </h3>
 
@@ -46,7 +46,7 @@ export function About() {
             </p>
 
             {/* Stats list */}
-            <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-white/5">
+            <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-text-primary/5">
               <div className="flex flex-col">
                 <span className="font-display text-3xl md:text-4xl font-bold text-accent-violet">3+</span>
                 <span className="font-body text-[11px] uppercase tracking-wider text-text-faint mt-1">
@@ -60,7 +60,7 @@ export function About() {
                 </span>
               </div>
               <div className="flex flex-col">
-                <span className="font-display text-3xl md:text-4xl font-bold text-white">2</span>
+                <span className="font-display text-3xl md:text-4xl font-bold text-text-primary">2</span>
                 <span className="font-body text-[11px] uppercase tracking-wider text-text-faint mt-1">
                   Industry Internships
                 </span>
@@ -80,48 +80,48 @@ export function About() {
           >
             {/* JSON Code Card */}
             <GlowCard 
-              className="bg-surface-elevated border border-white/10 hover:border-accent-violet/40 hover:shadow-[0_0_30px_rgba(139,92,246,0.1)] transition-all duration-500 rounded-2xl p-6 md:p-8"
+              className="bg-surface-elevated border border-text-primary/10 hover:border-accent-violet/40 hover:shadow-[0_0_30px_rgba(139,92,246,0.1)] transition-all duration-500 rounded-2xl p-6 md:p-8"
               glowColor="rgba(139, 92, 246, 0.08)"
             >
               <pre className="font-mono text-xs md:text-sm leading-relaxed overflow-x-auto text-left select-all">
                 <code>
-                  <span className="text-white">{`{`}</span>
+                  <span className="text-text-primary">{`{`}</span>
                   {'\n  '}
                   <span className="text-accent-violet">"name"</span>
-                  <span className="text-white">{`: `}</span>
+                  <span className="text-text-primary">{`: `}</span>
                   <span className="text-green-400">"B Vishnu Priyan"</span>
-                  <span className="text-white">{`,`}</span>
+                  <span className="text-text-primary">{`,`}</span>
                   {'\n  '}
                   <span className="text-accent-violet">"role"</span>
-                  <span className="text-white">{`: `}</span>
-                  <span className="text-white">{`[`}</span>
+                  <span className="text-text-primary">{`: `}</span>
+                  <span className="text-text-primary">{`[`}</span>
                   <span className="text-amber-400">"Developer"</span>
-                  <span className="text-white">{`, `}</span>
+                  <span className="text-text-primary">{`, `}</span>
                   <span className="text-amber-400">"Designer"</span>
-                  <span className="text-white">{`, `}</span>
+                  <span className="text-text-primary">{`, `}</span>
                   <span className="text-amber-400">"ML Engineer"</span>
-                  <span className="text-white">{`],`}</span>
+                  <span className="text-text-primary">{`],`}</span>
                   {'\n  '}
                   <span className="text-accent-violet">"location"</span>
-                  <span className="text-white">{`: `}</span>
+                  <span className="text-text-primary">{`: `}</span>
                   <span className="text-green-400">"Chennai, India"</span>
-                  <span className="text-white">{`,`}</span>
+                  <span className="text-text-primary">{`,`}</span>
                   {'\n  '}
                   <span className="text-accent-violet">"education"</span>
-                  <span className="text-white">{`: `}</span>
+                  <span className="text-text-primary">{`: `}</span>
                   <span className="text-green-400">"CIT — CSE 2024–2028"</span>
-                  <span className="text-white">{`,`}</span>
+                  <span className="text-text-primary">{`,`}</span>
                   {'\n  '}
                   <span className="text-accent-violet">"passion"</span>
-                  <span className="text-white">{`: `}</span>
+                  <span className="text-text-primary">{`: `}</span>
                   <span className="text-green-400">"Intelligence × Design"</span>
-                  <span className="text-white">{`,`}</span>
+                  <span className="text-text-primary">{`,`}</span>
                   {'\n  '}
                   <span className="text-accent-violet">"status"</span>
-                  <span className="text-white">{`: `}</span>
+                  <span className="text-text-primary">{`: `}</span>
                   <span className="text-green-400">"Available for opportunities"</span>
                   {'\n'}
-                  <span className="text-white">{`}`}</span>
+                  <span className="text-text-primary">{`}`}</span>
                 </code>
               </pre>
             </GlowCard>
@@ -131,7 +131,7 @@ export function About() {
               {['React', 'Python', 'TensorFlow', 'Figma'].map((tech) => (
                 <span
                   key={tech}
-                  className="font-mono text-xs text-text-muted bg-surface border border-white/10 px-4 py-2 rounded-full hover:border-accent-violet/30 transition-colors duration-300"
+                  className="font-mono text-xs text-text-muted bg-surface border border-text-primary/10 px-4 py-2 rounded-full hover:border-accent-violet/30 transition-colors duration-300"
                 >
                   {tech}
                 </span>

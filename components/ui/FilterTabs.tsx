@@ -33,8 +33,8 @@ export function FilterTabs<T extends string>({
             className={cn(
               'relative flex-shrink-0 px-5 py-2 rounded-full font-mono text-xs font-semibold uppercase tracking-widest transition-colors duration-300 focus:outline-none',
               isActive
-                ? 'text-white'
-                : 'text-text-muted hover:text-white border border-white/10 hover:border-white/20'
+                ? 'text-text-primary'
+                : 'text-text-muted hover:text-text-primary border border-text-primary/10 hover:border-text-primary/20'
             )}
           >
             {/* Animated background for active state */}

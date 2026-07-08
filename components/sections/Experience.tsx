@@ -81,7 +81,7 @@ export function Experience() {
           
           {/* Vertical Track Lines */}
           {/* Background trace line */}
-          <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-[1px] bg-white/10 z-0" />
+          <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-[1px] bg-slate-900/10 z-0" />
           
           {/* Active drawing scroll-tied line */}
           <div
@@ -113,7 +113,7 @@ export function Experience() {
                   {/* Horizontal Connector Line (desktop only) */}
                   <div 
                     className={cn(
-                      "hidden md:block absolute top-1/2 -translate-y-1/2 w-10 h-[1px] bg-white/10 z-0",
+                      "hidden md:block absolute top-1/2 -translate-y-1/2 w-10 h-[1px] bg-slate-900/10 z-0",
                       isOdd ? "left-[calc(50%-40px)]" : "right-[calc(50%-40px)]"
                     )}
                   />
@@ -130,7 +130,7 @@ export function Experience() {
                     )}
                   >
                     <GlowCard 
-                      className="bg-background border border-white/5 p-6 rounded-2xl w-full text-left relative group hover:border-accent-violet/30 transition-colors"
+                      className="bg-background border border-text-primary/5 p-6 rounded-2xl w-full text-left relative group hover:border-accent-violet/30 transition-colors"
                       glowColor="rgba(139, 92, 246, 0.08)"
                     >
                       {/* Type Badge Card Top-Right */}
@@ -142,11 +142,11 @@ export function Experience() {
 
                       {/* Header Info */}
                       <div className="flex gap-3 items-start mb-4">
-                        <span className="p-2.5 rounded-xl bg-surface border border-white/5 text-accent-violet mt-0.5">
+                        <span className="p-2.5 rounded-xl bg-surface border border-text-primary/5 text-accent-violet mt-0.5">
                           <Icon className="w-4 h-4" />
                         </span>
                         <div>
-                          <h4 className="font-display text-lg font-bold text-white pr-20 leading-tight">
+                          <h4 className="font-display text-lg font-bold text-text-primary pr-20 leading-tight">
                             {item.role}
                           </h4>
                           <span className="font-body text-xs text-text-muted mt-1 block">
@@ -185,7 +185,7 @@ export function Experience() {
         {/* ========================================================================= */}
         {/* CERTIFICATIONS SUBSECTION                                                 */}
         {/* ========================================================================= */}
-        <div className="w-full border-t border-white/5 pt-20">
+        <div className="w-full border-t border-text-primary/5 pt-20">
           <h3 className="font-mono text-xl font-bold text-text-muted tracking-wider uppercase mb-10 text-center md:text-left">
             Certifications
           </h3>
@@ -208,14 +208,14 @@ export function Experience() {
                   className="w-full"
                 >
                   <GlowCard 
-                    className="p-5 flex items-center gap-4 bg-surface border border-white/5 hover:border-accent-violet/30 hover:shadow-[0_0_20px_rgba(139,92,246,0.1)] transition-all duration-500 rounded-xl"
+                    className="p-5 flex items-center gap-4 bg-surface border border-text-primary/5 hover:border-accent-violet/30 hover:shadow-[0_0_20px_rgba(139,92,246,0.1)] transition-all duration-500 rounded-xl"
                     glowColor="rgba(139, 92, 246, 0.08)"
                   >
-                    <span className="p-3 rounded-xl bg-background border border-white/5 text-accent-violet flex-shrink-0">
+                    <span className="p-3 rounded-xl bg-background border border-text-primary/5 text-accent-violet flex-shrink-0">
                       <Award className="w-5 h-5" />
                     </span>
                     <div className="text-left">
-                      <h4 className="font-display text-sm font-semibold text-white leading-tight">
+                      <h4 className="font-display text-sm font-semibold text-text-primary leading-tight">
                         {name}
                       </h4>
                       <span className="font-mono text-[10px] text-text-faint block mt-1">

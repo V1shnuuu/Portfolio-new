@@ -62,7 +62,7 @@ export function Navbar() {
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 md:px-12',
           scrolled
-            ? 'bg-surface/80 backdrop-blur-xl border-b border-white/5 py-4'
+            ? 'bg-surface/80 backdrop-blur-xl border-b border-text-primary/5 py-4'
             : 'bg-transparent py-6'
         )}
       >
@@ -84,7 +84,7 @@ export function Navbar() {
                 onClick={(e) => handleNavClick(e, link)}
                 className={cn(
                   'group relative py-2 font-body text-sm font-medium transition-colors duration-300',
-                  isActive(link) ? 'text-white' : 'text-text-muted hover:text-white'
+                  isActive(link) ? 'text-text-primary' : 'text-text-muted hover:text-text-primary'
                 )}
               >
                 {link.label}
@@ -102,7 +102,7 @@ export function Navbar() {
             <a
               href={RESUME_URL}
               download
-              className="inline-flex items-center gap-1.5 font-mono text-xs text-text-muted hover:text-white transition-colors uppercase tracking-wider"
+              className="inline-flex items-center gap-1.5 font-mono text-xs text-text-muted hover:text-text-primary transition-colors uppercase tracking-wider"
               title="Download Resume"
             >
               <Download className="w-3.5 h-3.5" />
@@ -121,7 +121,7 @@ export function Navbar() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsOpen(true)}
-            className="md:hidden p-2 text-text-muted hover:text-white transition-colors focus:outline-none"
+            className="md:hidden p-2 text-text-muted hover:text-text-primary transition-colors focus:outline-none"
             aria-label="Open navigation menu"
           >
             <Menu className="w-6 h-6" />
@@ -145,7 +145,7 @@ export function Navbar() {
               <span className="font-display text-2xl font-bold bg-gradient-to-r from-accent-violet to-accent-indigo bg-clip-text text-transparent">VP</span>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-2 text-text-muted hover:text-white focus:outline-none"
+                className="p-2 text-text-muted hover:text-text-primary focus:outline-none"
                 aria-label="Close navigation menu"
               >
                 <X className="w-6 h-6" />
@@ -173,7 +173,7 @@ export function Navbar() {
                     }}
                     className={cn(
                       'font-display text-5xl font-bold transition-colors',
-                      isActive(link) ? 'text-white' : 'text-text-muted hover:text-white'
+                      isActive(link) ? 'text-text-primary' : 'text-text-muted hover:text-text-primary'
                     )}
                   >
                     {link.label}
@@ -185,13 +185,13 @@ export function Navbar() {
             {/* Footer row */}
             <div className="flex items-center justify-between border-t border-neutral-900 pt-6">
               <div className="flex items-center gap-4">
-                <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-full border border-neutral-800 text-text-muted hover:text-white transition-all" aria-label="GitHub">
+                <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-full border border-neutral-800 text-text-muted hover:text-text-primary transition-all" aria-label="GitHub">
                   <Github className="w-5 h-5" />
                 </a>
-                <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-full border border-neutral-800 text-text-muted hover:text-white transition-all" aria-label="LinkedIn">
+                <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-full border border-neutral-800 text-text-muted hover:text-text-primary transition-all" aria-label="LinkedIn">
                   <Linkedin className="w-5 h-5" />
                 </a>
-                <a href={RESUME_URL} download className="p-2.5 rounded-full border border-neutral-800 text-text-muted hover:text-white transition-all" aria-label="Download Resume">
+                <a href={RESUME_URL} download className="p-2.5 rounded-full border border-neutral-800 text-text-muted hover:text-text-primary transition-all" aria-label="Download Resume">
                   <Download className="w-5 h-5" />
                 </a>
               </div>

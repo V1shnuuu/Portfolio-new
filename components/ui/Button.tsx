@@ -19,7 +19,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       secondary: 'bg-surface-elevated text-text-primary hover:bg-neutral-800 border border-neutral-800',
       outline: 'bg-transparent text-text-primary border border-text-muted/30 hover:border-text-primary hover:bg-neutral-900',
       ghost: 'bg-transparent text-text-muted hover:text-text-primary hover:bg-neutral-900',
-      glow: 'relative bg-accent-violet text-white hover:bg-accent-violet/90 shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_35px_rgba(139,92,246,0.5)] transition-shadow duration-300',
+      glow: 'relative bg-accent-violet text-text-primary hover:bg-accent-violet/90 shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_35px_rgba(139,92,246,0.5)] transition-shadow duration-300',
     };
 
     const sizes = {

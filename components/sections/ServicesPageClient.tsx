@@ -40,7 +40,7 @@ function ServiceCard({ service, onGetSolution, onCalendly }: {
   };
 
   return (
-    <div className="bg-surface border border-white/5 hover:border-white/10 rounded-2xl p-6 flex flex-col gap-5 transition-colors duration-300">
+    <div className="bg-surface border border-text-primary/5 hover:border-text-primary/10 rounded-2xl p-6 flex flex-col gap-5 transition-colors duration-300">
       {/* Icon */}
       <div className={`inline-flex p-3 rounded-xl border w-fit ${accentClasses[accentColor]}`}>
         <Icon className="w-7 h-7" />
@@ -48,7 +48,7 @@ function ServiceCard({ service, onGetSolution, onCalendly }: {
 
       {/* Title + Badge */}
       <div className="flex items-start justify-between gap-2">
-        <h3 className="font-display text-xl font-bold text-white">{service.title}</h3>
+        <h3 className="font-display text-xl font-bold text-text-primary">{service.title}</h3>
         {service.featured && (
           <span className="flex-shrink-0 font-mono text-[9px] text-accent-cyan border border-accent-cyan/30 bg-accent-cyan/10 px-2 py-0.5 rounded-full uppercase tracking-wider">
             Verix AI
@@ -87,7 +87,7 @@ function ServiceCard({ service, onGetSolution, onCalendly }: {
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-white/5">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-text-primary/5">
               {service.pricing.map((tier, i) => (
                 <PricingCard
                   key={tier.name}
@@ -113,7 +113,7 @@ function ServiceCard({ service, onGetSolution, onCalendly }: {
           {service.cta.action === 'calendly' ? (
             <button
               onClick={onCalendly}
-              className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-accent-cyan hover:text-white transition-colors uppercase tracking-wider"
+              className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-accent-cyan hover:text-text-primary transition-colors uppercase tracking-wider"
             >
               <Calendar className="w-4 h-4" />
               {service.cta.label}
@@ -121,7 +121,7 @@ function ServiceCard({ service, onGetSolution, onCalendly }: {
           ) : service.cta.action === 'modal' ? (
             <button
               onClick={onGetSolution}
-              className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-accent-violet hover:text-white transition-colors uppercase tracking-wider"
+              className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-accent-violet hover:text-text-primary transition-colors uppercase tracking-wider"
             >
               <ArrowRight className="w-4 h-4" />
               {service.cta.label}
@@ -129,7 +129,7 @@ function ServiceCard({ service, onGetSolution, onCalendly }: {
           ) : (
             <a
               href={service.cta.href}
-              className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-text-muted hover:text-white transition-colors uppercase tracking-wider"
+              className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-text-muted hover:text-text-primary transition-colors uppercase tracking-wider"
             >
               <ArrowRight className="w-4 h-4" />
               {service.cta.label}
@@ -184,11 +184,11 @@ export function ServicesPageClient() {
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.96, y: 10 }}
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="w-full md:w-[540px] bg-surface border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl max-h-[90vh] overflow-y-auto pointer-events-auto"
+                  className="w-full md:w-[540px] bg-surface border border-text-primary/10 rounded-2xl p-6 md:p-8 shadow-2xl max-h-[90vh] overflow-y-auto pointer-events-auto"
                 >
                   <div className="flex items-center justify-between mb-6">
-                    <h2 className="font-display text-2xl font-bold text-white">Get Custom Solution</h2>
-                    <button onClick={() => setShowInquiryModal(false)} className="p-1.5 rounded-lg hover:bg-white/10 text-text-muted hover:text-white transition-colors">
+                    <h2 className="font-display text-2xl font-bold text-text-primary">Get Custom Solution</h2>
+                    <button onClick={() => setShowInquiryModal(false)} className="p-1.5 rounded-lg hover:bg-slate-900/10 text-text-muted hover:text-text-primary transition-colors">
                       <X className="w-5 h-5" />
                     </button>
                   </div>
@@ -218,11 +218,11 @@ export function ServicesPageClient() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="fixed inset-4 md:inset-20 z-[9999] bg-surface border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col"
+                className="fixed inset-4 md:inset-20 z-[9999] bg-surface border border-text-primary/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col"
               >
-                <div className="flex items-center justify-between p-4 border-b border-white/5">
-                  <h2 className="font-display text-lg font-bold text-white">Schedule a Consultation</h2>
-                  <button onClick={() => setShowCalendly(false)} className="p-1.5 rounded-lg hover:bg-white/10 text-text-muted hover:text-white transition-colors">
+                <div className="flex items-center justify-between p-4 border-b border-text-primary/5">
+                  <h2 className="font-display text-lg font-bold text-text-primary">Schedule a Consultation</h2>
+                  <button onClick={() => setShowCalendly(false)} className="p-1.5 rounded-lg hover:bg-slate-900/10 text-text-muted hover:text-text-primary transition-colors">
                     <X className="w-5 h-5" />
                   </button>
                 </div>
@@ -281,7 +281,7 @@ export function ServicesPageClient() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.1 }}
-                    className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-none mb-6"
+                    className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary tracking-tight leading-none mb-6"
                   >
                     Intelligent
                     <span className="text-gradient-tri"> Automation</span>
@@ -312,7 +312,7 @@ export function ServicesPageClient() {
                     </button>
                     <button
                       onClick={() => setShowInquiryModal(true)}
-                      className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/10 text-white font-mono text-sm font-bold uppercase tracking-wider hover:border-white/30 transition-all active:scale-95"
+                      className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-text-primary/10 text-text-primary font-mono text-sm font-bold uppercase tracking-wider hover:border-text-primary/30 transition-all active:scale-95"
                     >
                       Get Custom Solution
                     </button>
@@ -333,7 +333,7 @@ export function ServicesPageClient() {
           </section>
 
           {/* ── Stats ── */}
-          <section className="py-12 px-6 border-y border-white/5">
+          <section className="py-12 px-6 border-y border-text-primary/5">
             <div className="max-w-4xl mx-auto">
               <m.div
                 variants={staggerContainer}
@@ -368,7 +368,7 @@ export function ServicesPageClient() {
             <div className="max-w-7xl mx-auto">
               <div className="mb-12">
                 <p className="font-mono text-xs text-accent-violet uppercase tracking-widest mb-3">What We Build</p>
-                <h2 className="font-display text-4xl md:text-5xl font-bold text-white">Services & Offerings</h2>
+                <h2 className="font-display text-4xl md:text-5xl font-bold text-text-primary">Services & Offerings</h2>
               </div>
 
               <m.div
@@ -405,13 +405,13 @@ export function ServicesPageClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-surface border border-white/5 rounded-3xl p-10 md:p-16 relative overflow-hidden"
+                className="bg-surface border border-text-primary/5 rounded-3xl p-10 md:p-16 relative overflow-hidden"
               >
                 {/* Glow */}
                 <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(0,217,255,0.06) 0%, transparent 60%)' }} />
                 <div className="relative z-10">
                   <span className="font-mono text-xs text-accent-cyan uppercase tracking-widest">Ready to automate?</span>
-                  <h2 className="font-display text-4xl md:text-5xl font-bold text-white mt-4 mb-4">
+                  <h2 className="font-display text-4xl md:text-5xl font-bold text-text-primary mt-4 mb-4">
                     Let's Build Your{' '}
                     <span className="text-gradient-tri">AI-Powered</span> Future
                   </h2>
@@ -428,7 +428,7 @@ export function ServicesPageClient() {
                     </button>
                     <button
                       onClick={() => setShowInquiryModal(true)}
-                      className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/10 text-white font-mono text-sm font-bold uppercase tracking-wider hover:border-white/30 transition-all"
+                      className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-text-primary/10 text-text-primary font-mono text-sm font-bold uppercase tracking-wider hover:border-text-primary/30 transition-all"
                     >
                       Get a Quote
                     </button>

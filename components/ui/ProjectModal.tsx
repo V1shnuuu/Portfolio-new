@@ -58,12 +58,12 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-4 md:inset-8 lg:inset-16 z-[201] bg-surface border border-white/10 rounded-2xl overflow-y-auto shadow-2xl"
+            className="fixed inset-4 md:inset-8 lg:inset-16 z-[201] bg-surface border border-text-primary/10 rounded-2xl overflow-y-auto shadow-2xl"
           >
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-slate-900/10 hover:bg-slate-900/20 text-text-primary transition-colors"
               aria-label="Close modal"
             >
               <X className="w-5 h-5" />
@@ -71,7 +71,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
 
             {/* Hero Image / Placeholder */}
             <div className="relative w-full aspect-video bg-surface-elevated flex items-center justify-center overflow-hidden rounded-t-2xl">
-              <span className="font-mono text-[8rem] md:text-[12rem] font-bold text-white/5 select-none">
+              <span className="font-mono text-[8rem] md:text-[12rem] font-bold text-text-primary/5 select-none">
                 {project.category.slice(0, 2).toUpperCase()}
               </span>
               {/* Category pill */}
@@ -82,7 +82,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
               </div>
               {/* Year badge */}
               <div className="absolute top-4 right-12">
-                <span className="font-mono text-[10px] text-text-faint border border-white/5 px-3 py-1 rounded-full">
+                <span className="font-mono text-[10px] text-text-faint border border-text-primary/5 px-3 py-1 rounded-full">
                   {project.year}
                 </span>
               </div>
@@ -95,7 +95,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                   className="absolute inset-0 flex items-center justify-center group"
                 >
                   <div className="w-16 h-16 rounded-full bg-accent-violet/80 flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform shadow-glow-violet">
-                    <Play className="w-7 h-7 text-white ml-1" />
+                    <Play className="w-7 h-7 text-text-primary ml-1" />
                   </div>
                 </a>
               )}
@@ -108,7 +108,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                 {/* Left: Main content */}
                 <div className="lg:col-span-2 flex flex-col gap-6">
                   <div>
-                    <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-3">
+                    <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-3">
                       {project.shortTitle}
                     </h2>
                     <p className="font-body text-base text-text-muted leading-relaxed">
@@ -125,7 +125,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                       {project.tech.map((t) => (
                         <span
                           key={t}
-                          className="font-mono text-[10px] text-text-muted bg-background border border-white/10 rounded-full px-3 py-1"
+                          className="font-mono text-[10px] text-text-muted bg-background border border-text-primary/10 rounded-full px-3 py-1"
                         >
                           {t}
                         </span>
@@ -134,13 +134,13 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                   </div>
 
                   {/* CTA Links */}
-                  <div className="flex items-center gap-4 pt-4 border-t border-white/5">
+                  <div className="flex items-center gap-4 pt-4 border-t border-text-primary/5">
                     {project.github && (
                       <a
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 hover:border-accent-violet/50 text-text-muted hover:text-white font-mono text-xs font-semibold transition-all duration-300"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-text-primary/10 hover:border-accent-violet/50 text-text-muted hover:text-text-primary font-mono text-xs font-semibold transition-all duration-300"
                       >
                         <Github className="w-4 h-4" />
                         View Code
@@ -151,7 +151,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                         href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-accent-violet to-accent-indigo text-white font-mono text-xs font-semibold hover:brightness-110 transition-all duration-300 shadow-glow-violet"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-accent-violet to-accent-indigo text-text-primary font-mono text-xs font-semibold hover:brightness-110 transition-all duration-300 shadow-glow-violet"
                       >
                         <ExternalLink className="w-4 h-4" />
                         Live Demo
@@ -178,9 +178,9 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                       {project.metrics.map((metric, idx) => (
                         <div
                           key={idx}
-                          className="bg-background border border-white/5 rounded-xl p-4"
+                          className="bg-background border border-text-primary/5 rounded-xl p-4"
                         >
-                          <div className="font-display text-2xl font-bold text-white">
+                          <div className="font-display text-2xl font-bold text-text-primary">
                             <CountUp
                               value={parseFloat(metric.value.replace(/[^0-9.]/g, '')) || 0}
                               suffix={metric.suffix}

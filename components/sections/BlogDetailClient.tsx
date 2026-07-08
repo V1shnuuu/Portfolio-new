@@ -192,12 +192,12 @@ function getHeadings(html: string) {
 
 function ArticleImage({ post }: { post: BlogPost }) {
   return (
-    <div className="relative aspect-[16/8] w-full overflow-hidden rounded-2xl border border-white/10 bg-surface-elevated">
+    <div className="relative aspect-[16/8] w-full overflow-hidden rounded-2xl border border-text-primary/10 bg-surface-elevated">
       {post.image ? (
         <Image src={post.image} alt={post.title} fill className="object-cover" priority sizes="(min-width: 1024px) 896px, 100vw" />
       ) : (
         <div className="flex h-full items-center justify-center">
-          <span className="font-mono text-[8rem] font-bold text-white/5 select-none">{post.category.slice(0, 2).toUpperCase()}</span>
+          <span className="font-mono text-[8rem] font-bold text-text-primary/5 select-none">{post.category.slice(0, 2).toUpperCase()}</span>
         </div>
       )}
       <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
@@ -218,31 +218,31 @@ function CommentThread({ comments, canManage, onDelete, onEdit, onReply }: {
   return (
     <div className="space-y-4">
       {parents.map(comment => (
-        <div key={comment.id} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+        <div key={comment.id} className="rounded-2xl border border-text-primary/10 bg-white/[0.03] p-4">
           <div className="flex items-start gap-3">
             <div className="w-9 h-9 rounded-full bg-accent-violet/10 border border-accent-violet/20 flex items-center justify-center font-display font-bold text-xs text-accent-violet">{comment.authorInitials}</div>
             <div className="flex-1">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="font-display text-sm font-bold text-white">{comment.authorName}</span>
+                <span className="font-display text-sm font-bold text-text-primary">{comment.authorName}</span>
                 <span className="rounded-full border border-accent-cyan/20 bg-accent-cyan/10 px-2 py-0.5 font-mono text-[8px] uppercase tracking-wider text-accent-cyan">Author</span>
                 <span className="font-mono text-[10px] text-text-faint">{formatDate(comment.createdAt)}</span>
               </div>
               <p className="mt-2 text-sm leading-relaxed text-text-muted">{comment.content}</p>
               {canManage && (
                 <div className="mt-3 flex gap-3">
-                  <button onClick={() => onReply(comment)} className="inline-flex items-center gap-1 font-mono text-[10px] text-text-faint hover:text-white"><Reply className="w-3 h-3" /> Reply</button>
-                  <button onClick={() => onEdit(comment)} className="inline-flex items-center gap-1 font-mono text-[10px] text-text-faint hover:text-white"><Edit3 className="w-3 h-3" /> Edit</button>
+                  <button onClick={() => onReply(comment)} className="inline-flex items-center gap-1 font-mono text-[10px] text-text-faint hover:text-text-primary"><Reply className="w-3 h-3" /> Reply</button>
+                  <button onClick={() => onEdit(comment)} className="inline-flex items-center gap-1 font-mono text-[10px] text-text-faint hover:text-text-primary"><Edit3 className="w-3 h-3" /> Edit</button>
                   <button onClick={() => onDelete(comment)} className="inline-flex items-center gap-1 font-mono text-[10px] text-text-faint hover:text-accent-pink"><Trash2 className="w-3 h-3" /> Delete</button>
                 </div>
               )}
             </div>
           </div>
           {replies(comment.id).length > 0 && (
-            <div className="mt-4 space-y-3 border-l border-white/10 pl-4">
+            <div className="mt-4 space-y-3 border-l border-text-primary/10 pl-4">
               {replies(comment.id).map(reply => (
-                <div key={reply.id} className="rounded-xl border border-white/5 bg-black/20 p-3">
+                <div key={reply.id} className="rounded-xl border border-text-primary/5 bg-slate-900/5 p-3">
                   <div className="flex items-center gap-2">
-                    <span className="font-display text-xs font-bold text-white">{reply.authorName}</span>
+                    <span className="font-display text-xs font-bold text-text-primary">{reply.authorName}</span>
                     <span className="font-mono text-[9px] text-text-faint">{formatDate(reply.createdAt)}</span>
                   </div>
                   <p className="mt-1 text-sm text-text-muted">{reply.content}</p>
@@ -252,7 +252,7 @@ function CommentThread({ comments, canManage, onDelete, onEdit, onReply }: {
           )}
         </div>
       ))}
-      {comments.length === 0 && <p className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-center font-mono text-xs text-text-faint">No comments yet. Start the conversation.</p>}
+      {comments.length === 0 && <p className="rounded-2xl border border-text-primary/10 bg-white/[0.03] p-5 text-center font-mono text-xs text-text-faint">No comments yet. Start the conversation.</p>}
     </div>
   );
 }
@@ -339,10 +339,10 @@ export function BlogDetailClient({ post: initialPost, relatedPosts, slug }: Blog
 
   if (!post) {
     return (
-      <div className="rounded-2xl border border-white/10 bg-surface p-10 text-center">
-        <h1 className="font-display text-3xl font-bold text-white">Article not found</h1>
+      <div className="rounded-2xl border border-text-primary/10 bg-surface p-10 text-center">
+        <h1 className="font-display text-3xl font-bold text-text-primary">Article not found</h1>
         <p className="mt-3 text-text-muted">This post may have been archived or only exists in another browser session.</p>
-        <Link href="/blog" className="mt-6 inline-flex items-center gap-2 rounded-xl border border-white/10 px-4 py-2 font-mono text-xs text-text-muted hover:text-white">
+        <Link href="/blog" className="mt-6 inline-flex items-center gap-2 rounded-xl border border-text-primary/10 px-4 py-2 font-mono text-xs text-text-muted hover:text-text-primary">
           <ArrowLeft className="w-4 h-4" /> Back to Blogs
         </Link>
       </div>
@@ -456,7 +456,7 @@ export function BlogDetailClient({ post: initialPost, relatedPosts, slug }: Blog
       >
         <div className="min-w-0 flex flex-col gap-8">
           <header className="flex flex-col gap-5">
-            <Link href="/blog" className="inline-flex w-fit items-center gap-2 font-mono text-xs text-text-muted hover:text-white transition-colors">
+            <Link href="/blog" className="inline-flex w-fit items-center gap-2 font-mono text-xs text-text-muted hover:text-text-primary transition-colors">
               <ArrowLeft className="w-4 h-4" /> Back to Blogs
             </Link>
 
@@ -469,30 +469,30 @@ export function BlogDetailClient({ post: initialPost, relatedPosts, slug }: Blog
               <span className="inline-flex items-center gap-1.5 font-mono text-[10px] text-text-faint"><CalendarDays className="w-3.5 h-3.5" /> Updated {formatDate(post.updatedAt || post.date)}</span>
             </div>
 
-            <h1 className="font-display text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight">{post.title}</h1>
+            <h1 className="font-display text-4xl md:text-6xl font-bold text-text-primary tracking-tight leading-tight">{post.title}</h1>
             <p className="font-body text-lg text-text-muted leading-relaxed">{post.subtitle || post.excerpt}</p>
 
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-white/5">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-text-primary/5">
               <div className="flex items-center gap-3">
                 <div className="w-11 h-11 rounded-full bg-accent-violet/10 border border-accent-violet/20 flex items-center justify-center font-display font-bold text-sm text-accent-violet">
                   {post.author.initials}
                 </div>
                 <div>
-                  <div className="font-display text-sm font-bold text-white">{post.author.name}</div>
+                  <div className="font-display text-sm font-bold text-text-primary">{post.author.name}</div>
                   <div className="font-mono text-[10px] text-text-faint">{formatDate(post.createdAt || post.date)}</div>
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
-                <button onClick={toggleLike} className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2 font-mono text-xs transition-all ${isLiked ? 'border-accent-pink bg-accent-pink/10 text-accent-pink' : 'border-white/10 text-text-muted hover:text-accent-pink hover:border-accent-pink/40'}`}>
+                <button onClick={toggleLike} className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2 font-mono text-xs transition-all ${isLiked ? 'border-accent-pink bg-accent-pink/10 text-accent-pink' : 'border-text-primary/10 text-text-muted hover:text-accent-pink hover:border-accent-pink/40'}`}>
                   <Heart className="w-4 h-4" fill={isLiked ? 'currentColor' : 'none'} /> {formatNumber(post.likes)}
                 </button>
-                <button onClick={toggleBookmark} className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2 font-mono text-xs transition-all ${isBookmarked ? 'border-accent-violet bg-accent-violet text-white' : 'border-white/10 text-text-muted hover:text-white hover:border-accent-violet/40'}`}>
+                <button onClick={toggleBookmark} className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2 font-mono text-xs transition-all ${isBookmarked ? 'border-accent-violet bg-accent-violet text-text-primary' : 'border-text-primary/10 text-text-muted hover:text-text-primary hover:border-accent-violet/40'}`}>
                   <Bookmark className="w-4 h-4" fill={isBookmarked ? 'currentColor' : 'none'} /> Save
                 </button>
-                <button onClick={handleShare} className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-4 py-2 font-mono text-xs text-text-muted hover:text-white hover:border-accent-cyan/40 transition-all">
+                <button onClick={handleShare} className="inline-flex items-center gap-2 rounded-xl border border-text-primary/10 px-4 py-2 font-mono text-xs text-text-muted hover:text-text-primary hover:border-accent-cyan/40 transition-all">
                   <Share2 className="w-4 h-4" /> Share
                 </button>
-                <button onClick={() => window.print()} className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-4 py-2 font-mono text-xs text-text-muted hover:text-white hover:border-white/20 transition-all">
+                <button onClick={() => window.print()} className="inline-flex items-center gap-2 rounded-xl border border-text-primary/10 px-4 py-2 font-mono text-xs text-text-muted hover:text-text-primary hover:border-text-primary/20 transition-all">
                   <Printer className="w-4 h-4" /> Print
                 </button>
               </div>
@@ -504,34 +504,34 @@ export function BlogDetailClient({ post: initialPost, relatedPosts, slug }: Blog
           <div
             className="prose-dark max-w-none text-text-muted leading-8
               [&_a]:text-accent-violet [&_a]:underline [&_a]:underline-offset-4
-              [&_blockquote]:border-l-2 [&_blockquote]:border-accent-violet [&_blockquote]:pl-5 [&_blockquote]:text-white
-              [&_code]:rounded [&_code]:border [&_code]:border-white/10 [&_code]:bg-white/[0.04] [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-accent-violet
-              [&_h2]:mt-12 [&_h2]:font-display [&_h2]:text-3xl [&_h2]:font-bold [&_h2]:text-white
-              [&_h3]:mt-8 [&_h3]:font-display [&_h3]:text-2xl [&_h3]:font-bold [&_h3]:text-white
+              [&_blockquote]:border-l-2 [&_blockquote]:border-accent-violet [&_blockquote]:pl-5 [&_blockquote]:text-text-primary
+              [&_code]:rounded [&_code]:border [&_code]:border-text-primary/10 [&_code]:bg-white/[0.04] [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-accent-violet
+              [&_h2]:mt-12 [&_h2]:font-display [&_h2]:text-3xl [&_h2]:font-bold [&_h2]:text-text-primary
+              [&_h3]:mt-8 [&_h3]:font-display [&_h3]:text-2xl [&_h3]:font-bold [&_h3]:text-text-primary
               [&_h2_button]:ml-2 [&_h2_button]:text-text-faint [&_h2_button]:opacity-0 [&_h2_button]:transition-opacity [&_h2:hover_button]:opacity-100
               [&_h3_button]:ml-2 [&_h3_button]:text-text-faint [&_h3_button]:opacity-0 [&_h3_button]:transition-opacity [&_h3:hover_button]:opacity-100
               [&_li]:ml-5 [&_li]:list-disc [&_p]:mb-5
-              [&_pre]:overflow-x-auto [&_pre]:rounded-2xl [&_pre]:border [&_pre]:border-white/10 [&_pre]:bg-black/40 [&_pre]:p-5"
+              [&_pre]:overflow-x-auto [&_pre]:rounded-2xl [&_pre]:border [&_pre]:border-text-primary/10 [&_pre]:bg-slate-900/5 [&_pre]:p-5"
             dangerouslySetInnerHTML={{ __html: html }}
           />
 
-          <div className="flex flex-wrap gap-2 pt-6 border-t border-white/5">
+          <div className="flex flex-wrap gap-2 pt-6 border-t border-text-primary/5">
             {post.tags.map(tag => (
-              <span key={tag} className="font-mono text-[9px] uppercase tracking-wider text-text-faint bg-surface border border-white/5 px-3 py-1 rounded-full">#{tag}</span>
+              <span key={tag} className="font-mono text-[9px] uppercase tracking-wider text-text-faint bg-surface border border-text-primary/5 px-3 py-1 rounded-full">#{tag}</span>
             ))}
           </div>
 
-          <section className="rounded-2xl border border-white/10 bg-surface/70 p-6">
+          <section className="rounded-2xl border border-text-primary/10 bg-surface/70 p-6">
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="w-14 h-14 rounded-2xl bg-accent-violet/10 border border-accent-violet/20 flex items-center justify-center font-display font-bold text-accent-violet">{post.author.initials}</div>
               <div className="flex-1">
                 <p className="font-mono text-[10px] uppercase tracking-widest text-text-faint">Author</p>
-                <h2 className="font-display text-2xl font-bold text-white">{post.author.name}</h2>
+                <h2 className="font-display text-2xl font-bold text-text-primary">{post.author.name}</h2>
                 <p className="mt-2 text-sm leading-relaxed text-text-muted">{post.author.bio}</p>
                 <div className="mt-4 flex flex-wrap gap-2">
-                  <span className="rounded-full border border-white/10 px-3 py-1 font-mono text-[10px] text-text-faint">{allPosts.filter(item => item.author.name === post.author.name).length} Articles</span>
-                  <Link href="/contact" className="rounded-full border border-white/10 px-3 py-1 font-mono text-[10px] text-text-faint hover:text-white">View Profile</Link>
-                  {post.author.socials?.linkedin && <a href={post.author.socials.linkedin} className="rounded-full border border-white/10 px-3 py-1 font-mono text-[10px] text-text-faint hover:text-white" target="_blank" rel="noreferrer">LinkedIn</a>}
+                  <span className="rounded-full border border-text-primary/10 px-3 py-1 font-mono text-[10px] text-text-faint">{allPosts.filter(item => item.author.name === post.author.name).length} Articles</span>
+                  <Link href="/contact" className="rounded-full border border-text-primary/10 px-3 py-1 font-mono text-[10px] text-text-faint hover:text-text-primary">View Profile</Link>
+                  {post.author.socials?.linkedin && <a href={post.author.socials.linkedin} className="rounded-full border border-text-primary/10 px-3 py-1 font-mono text-[10px] text-text-faint hover:text-text-primary" target="_blank" rel="noreferrer">LinkedIn</a>}
                 </div>
               </div>
             </div>
@@ -539,7 +539,7 @@ export function BlogDetailClient({ post: initialPost, relatedPosts, slug }: Blog
 
           <section className="space-y-4">
             <div className="flex items-center justify-between gap-4">
-              <h2 className="font-display text-2xl font-bold text-white">Comments</h2>
+              <h2 className="font-display text-2xl font-bold text-text-primary">Comments</h2>
               <div className="inline-flex items-center gap-2">
                 <span className="inline-flex items-center gap-2 font-mono text-xs text-text-faint"><MessageCircle className="w-4 h-4" /> {post.comments?.length || 0}</span>
                 {!isOwner && (
@@ -550,20 +550,20 @@ export function BlogDetailClient({ post: initialPost, relatedPosts, slug }: Blog
               </div>
             </div>
             {isOwner ? (
-              <form onSubmit={submitComment} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+              <form onSubmit={submitComment} className="rounded-2xl border border-text-primary/10 bg-white/[0.03] p-4">
                 {replyTo && (
                   <div className="mb-3 flex items-center justify-between rounded-xl border border-accent-violet/20 bg-accent-violet/10 px-3 py-2">
                     <span className="font-mono text-[10px] text-accent-violet">Replying to {replyTo.authorName}</span>
-                    <button type="button" onClick={() => setReplyTo(null)} className="font-mono text-[10px] text-text-faint hover:text-white">Cancel</button>
+                    <button type="button" onClick={() => setReplyTo(null)} className="font-mono text-[10px] text-text-faint hover:text-text-primary">Cancel</button>
                   </div>
                 )}
-                <textarea value={comment} onChange={event => setComment(event.target.value)} rows={3} placeholder="Add a thoughtful comment..." className="w-full resize-none rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white outline-none transition-all placeholder:text-text-faint focus:border-accent-violet/50" />
+                <textarea value={comment} onChange={event => setComment(event.target.value)} rows={3} placeholder="Add a thoughtful comment..." className="w-full resize-none rounded-xl border border-text-primary/10 bg-slate-900/5 px-4 py-3 text-sm text-text-primary outline-none transition-all placeholder:text-text-faint focus:border-accent-violet/50" />
                 <div className="mt-3 flex justify-end">
                   <button type="submit" className="rounded-xl bg-gradient-to-r from-accent-cyan to-accent-violet px-4 py-2 font-mono text-xs font-bold text-black hover:brightness-110 transition-all">Add Comment</button>
                 </div>
               </form>
             ) : (
-              <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 font-mono text-xs text-text-faint">
+              <div className="rounded-2xl border border-text-primary/10 bg-white/[0.03] p-4 font-mono text-xs text-text-faint">
                 Comments are read-only for visitors.
               </div>
             )}
@@ -572,27 +572,27 @@ export function BlogDetailClient({ post: initialPost, relatedPosts, slug }: Blog
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {previousPost && (
-              <Link href={`/blog/${previousPost.slug}`} className="rounded-2xl border border-white/10 bg-surface/70 p-4 hover:border-accent-violet/40 transition-all">
+              <Link href={`/blog/${previousPost.slug}`} className="rounded-2xl border border-text-primary/10 bg-surface/70 p-4 hover:border-accent-violet/40 transition-all">
                 <span className="inline-flex items-center gap-2 font-mono text-[10px] text-text-faint"><ArrowLeft className="w-3 h-3" /> Previous Article</span>
-                <h3 className="mt-2 font-display text-base font-bold text-white line-clamp-2">{previousPost.title}</h3>
+                <h3 className="mt-2 font-display text-base font-bold text-text-primary line-clamp-2">{previousPost.title}</h3>
               </Link>
             )}
             {nextPost && (
-              <Link href={`/blog/${nextPost.slug}`} className="rounded-2xl border border-white/10 bg-surface/70 p-4 hover:border-accent-violet/40 transition-all sm:text-right">
+              <Link href={`/blog/${nextPost.slug}`} className="rounded-2xl border border-text-primary/10 bg-surface/70 p-4 hover:border-accent-violet/40 transition-all sm:text-right">
                 <span className="inline-flex items-center gap-2 font-mono text-[10px] text-text-faint">Next Article <ArrowRight className="w-3 h-3" /></span>
-                <h3 className="mt-2 font-display text-base font-bold text-white line-clamp-2">{nextPost.title}</h3>
+                <h3 className="mt-2 font-display text-base font-bold text-text-primary line-clamp-2">{nextPost.title}</h3>
               </Link>
             )}
           </div>
 
           {related.length > 0 && (
-            <section className="pt-8 border-t border-white/5">
-              <h2 className="font-display text-2xl font-bold text-white mb-4">Related Articles</h2>
+            <section className="pt-8 border-t border-text-primary/5">
+              <h2 className="font-display text-2xl font-bold text-text-primary mb-4">Related Articles</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {related.map(item => (
-                  <Link key={item.id} href={`/blog/${item.slug}`} className="group block bg-surface border border-white/5 hover:border-accent-violet/30 rounded-xl p-4 transition-colors">
+                  <Link key={item.id} href={`/blog/${item.slug}`} className="group block bg-surface border border-text-primary/5 hover:border-accent-violet/30 rounded-xl p-4 transition-colors">
                     <span className="font-mono text-[9px] text-text-faint uppercase tracking-wider">{categoryLabel(item.category)}</span>
-                    <h3 className="font-display text-base font-bold text-white group-hover:text-accent-violet transition-colors mt-1 mb-2 line-clamp-2">{item.title}</h3>
+                    <h3 className="font-display text-base font-bold text-text-primary group-hover:text-accent-violet transition-colors mt-1 mb-2 line-clamp-2">{item.title}</h3>
                     <div className="flex items-center gap-2 text-text-faint">
                       <Clock className="w-3 h-3" />
                       <span className="font-mono text-[9px]">{item.readTime} min</span>
@@ -606,18 +606,18 @@ export function BlogDetailClient({ post: initialPost, relatedPosts, slug }: Blog
 
         <aside className="hidden lg:block">
           <div className="sticky top-28 space-y-4">
-            <div className="rounded-2xl border border-white/10 bg-surface/70 p-5">
+            <div className="rounded-2xl border border-text-primary/10 bg-surface/70 p-5">
               <p className="font-mono text-[10px] uppercase tracking-widest text-text-faint mb-4">Table of Contents</p>
               <nav className="space-y-2">
                 {headings.map(heading => (
-                  <a key={heading.id} href={`#${heading.id}`} className={`block font-mono text-[11px] transition-colors ${heading.level === 3 ? 'pl-3' : ''} ${activeHeading === heading.id ? 'text-accent-violet' : 'text-text-faint hover:text-white'}`}>
+                  <a key={heading.id} href={`#${heading.id}`} className={`block font-mono text-[11px] transition-colors ${heading.level === 3 ? 'pl-3' : ''} ${activeHeading === heading.id ? 'text-accent-violet' : 'text-text-faint hover:text-text-primary'}`}>
                     {heading.title}
                   </a>
                 ))}
                 {headings.length === 0 && <span className="font-mono text-[11px] text-text-faint">No headings yet.</span>}
               </nav>
             </div>
-            <div className="rounded-2xl border border-white/10 bg-surface/70 p-5">
+            <div className="rounded-2xl border border-text-primary/10 bg-surface/70 p-5">
               <p className="font-mono text-[10px] uppercase tracking-widest text-text-faint mb-3">Reading</p>
               <div className="space-y-2 font-mono text-[11px] text-text-faint">
                 <p className="flex items-center gap-2"><Clock className="w-3.5 h-3.5" /> Estimated {post.readTime} min</p>
@@ -625,10 +625,10 @@ export function BlogDetailClient({ post: initialPost, relatedPosts, slug }: Blog
                 <p className="flex items-center gap-2"><LinkIcon className="w-3.5 h-3.5" /> {categoryLabel(post.category)}</p>
               </div>
               <div className="mt-4 grid grid-cols-2 gap-2">
-                <button onClick={() => navigator.clipboard.writeText(window.location.href)} className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-3 py-2 font-mono text-[10px] text-text-faint hover:text-white">
+                <button onClick={() => navigator.clipboard.writeText(window.location.href)} className="inline-flex items-center justify-center gap-2 rounded-xl border border-text-primary/10 px-3 py-2 font-mono text-[10px] text-text-faint hover:text-text-primary">
                   <Copy className="w-3.5 h-3.5" /> Copy
                 </button>
-                <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-3 py-2 font-mono text-[10px] text-text-faint hover:text-white">
+                <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="inline-flex items-center justify-center gap-2 rounded-xl border border-text-primary/10 px-3 py-2 font-mono text-[10px] text-text-faint hover:text-text-primary">
                   <ArrowUp className="w-3.5 h-3.5" /> Top
                 </button>
               </div>

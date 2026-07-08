@@ -112,7 +112,7 @@ export function Hero() {
 
         {/* 2. Main Title - Character-by-character reveals using GSAP */}
         <h1 
-          className="font-display font-bold tracking-tight text-white mb-6 select-text flex flex-col items-center"
+          className="font-display font-bold tracking-tight text-text-primary mb-6 select-text flex flex-col items-center"
           style={{ fontSize: 'clamp(72px, 10vw, 140px)', lineHeight: '0.95' }}
         >
           {/* Creative Row */}
@@ -156,7 +156,7 @@ export function Hero() {
         >
           <MagneticButton>
             <Link href="#projects">
-              <Button variant="glow" size="lg" className="rounded-full px-8 py-4 text-white uppercase tracking-wider font-semibold text-xs">
+              <Button variant="glow" size="lg" className="rounded-full px-8 py-4 text-text-primary uppercase tracking-wider font-semibold text-xs">
                 View My Work
               </Button>
             </Link>
@@ -164,7 +164,7 @@ export function Hero() {
 
           <MagneticButton>
             <Link href="#contact">
-              <Button variant="outline" size="lg" className="rounded-full px-8 py-4 text-white border-white/20 uppercase tracking-wider font-semibold text-xs">
+              <Button variant="outline" size="lg" className="rounded-full px-8 py-4 text-text-primary border-text-primary/20 uppercase tracking-wider font-semibold text-xs">
                 Get In Touch
               </Button>
             </Link>
@@ -213,11 +213,11 @@ export function Hero() {
       <div className="w-full flex flex-col items-center gap-4 relative z-10 select-none pointer-events-none mt-auto">
         {/* Scroll down indicator icon */}
         <div className="animate-bounce">
-          <ChevronDown className="w-5 h-5 text-white/60" />
+          <ChevronDown className="w-5 h-5 text-text-primary/60" />
         </div>
 
         {/* Fast Marquee Ticker */}
-        <div className="w-full overflow-hidden border-y border-white/5 py-4 pointer-events-auto bg-background/50 backdrop-blur-sm">
+        <div className="w-full overflow-hidden border-y border-text-primary/5 py-4 pointer-events-auto bg-background/50 backdrop-blur-sm">
           <Marquee 
             speed={40} 
             gradient={false}
@@ -225,7 +225,7 @@ export function Hero() {
           >
             {marqueeSkills.map((skill, idx) => (
               <span key={`${skill}-${idx}`} className="inline-flex items-center">
-                <span className="mx-6 text-white/80">{skill}</span>
+                <span className="mx-6 text-text-primary/80">{skill}</span>
                 <span className="text-accent-violet">◆</span>
               </span>
             ))}

@@ -39,20 +39,23 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+import BackgroundElements from '@/components/layout/BackgroundElements';
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark font-body" style={{ colorScheme: 'dark' }} suppressHydrationWarning>
-      <body className="bg-background text-text-primary antialiased selection:bg-accent-violet/30 selection:text-white">
+    <html lang="en" className="light font-body" style={{ colorScheme: 'light' }} suppressHydrationWarning>
+      <body className="bg-background text-text-primary antialiased selection:bg-accent-violet/30 selection:text-text-primary">
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem={false}
           storageKey="vishnu-portfolio-theme"
         >
+          <BackgroundElements />
           <LenisProvider>
             <LazyMotion features={domAnimation}>
               <LayoutProvider>

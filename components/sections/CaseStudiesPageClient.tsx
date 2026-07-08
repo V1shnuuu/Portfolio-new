@@ -21,7 +21,7 @@ export function CaseStudiesPageClient() {
               Deep Dives
             </m.p>
             <m.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-display text-5xl md:text-6xl font-bold text-white tracking-tight mb-4">
+              className="font-display text-5xl md:text-6xl font-bold text-text-primary tracking-tight mb-4">
               Case Studies
             </m.h1>
             <m.p initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
@@ -43,11 +43,11 @@ export function CaseStudiesPageClient() {
                 variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { delay: idx * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] } } }}
               >
                 <Link href={`/case-studies/${cs.slug}`} className="block group">
-                  <div className="bg-surface border border-white/5 hover:border-accent-cyan/30 rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-[0_0_40px_rgba(0,217,255,0.06)]">
+                  <div className="bg-surface border border-text-primary/5 hover:border-accent-cyan/30 rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-[0_0_40px_rgba(0,217,255,0.06)]">
                     <div className="flex flex-col md:flex-row">
                       {/* Left: Visual placeholder */}
                       <div className="md:w-80 aspect-video md:aspect-auto flex-shrink-0 bg-surface-elevated relative flex items-center justify-center overflow-hidden">
-                        <span className="font-mono text-6xl font-bold text-white/5 select-none">CS</span>
+                        <span className="font-mono text-6xl font-bold text-text-primary/5 select-none">CS</span>
                         <div className="absolute inset-0 bg-gradient-to-br from-accent-cyan/5 to-transparent" />
                         <div className="absolute bottom-4 left-4">
                           <span className="font-mono text-[9px] text-accent-cyan border border-accent-cyan/30 bg-accent-cyan/10 px-2.5 py-1 rounded-full uppercase tracking-wider">
@@ -61,7 +61,7 @@ export function CaseStudiesPageClient() {
                         <div className="flex items-start justify-between gap-4">
                           <div>
                             <p className="font-mono text-xs text-text-faint mb-1">{cs.year} · {cs.client}</p>
-                            <h2 className="font-display text-2xl md:text-3xl font-bold text-white group-hover:text-accent-cyan transition-colors duration-300">
+                            <h2 className="font-display text-2xl md:text-3xl font-bold text-text-primary group-hover:text-accent-cyan transition-colors duration-300">
                               {cs.title}
                             </h2>
                           </div>
@@ -73,12 +73,12 @@ export function CaseStudiesPageClient() {
                         </p>
 
                         {/* Key metrics preview */}
-                        <div className="flex flex-wrap gap-4 pt-4 border-t border-white/5">
+                        <div className="flex flex-wrap gap-4 pt-4 border-t border-text-primary/5">
                           {cs.metrics.slice(0, 3).map((metric, i) => (
                             <div key={i} className="flex items-center gap-2">
                               <BarChart2 className="w-3.5 h-3.5 text-accent-cyan flex-shrink-0" />
                               <span className="font-mono text-xs">
-                                <span className="text-white font-bold">{metric.value}</span>
+                                <span className="text-text-primary font-bold">{metric.value}</span>
                                 <span className="text-text-faint ml-1">{metric.label}</span>
                               </span>
                             </div>

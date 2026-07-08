@@ -28,11 +28,11 @@ export function Footer() {
   const isHome = pathname === '/';
 
   return (
-    <footer className="w-full bg-[#0a0a0a] border-t border-white/5 py-12 px-6 md:px-12 relative z-10">
+    <footer className="w-full bg-[#0a0a0a] border-t border-text-primary/5 py-12 px-6 md:px-12 relative z-10">
       <div className="max-w-7xl mx-auto flex flex-col gap-10">
         
         {/* Top Row: Logo & Nav Links */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-white/5">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-text-primary/5">
           <div className="flex flex-col items-center md:items-start gap-1">
             <Link href="/" className="flex items-center">
               <span className="font-display text-2xl font-bold bg-gradient-to-r from-accent-violet to-accent-indigo bg-clip-text text-transparent">
@@ -56,7 +56,7 @@ export function Footer() {
                   key={link.label}
                   href={href}
                   onClick={onClick}
-                  className="font-body text-xs md:text-sm text-text-muted hover:text-white transition-colors duration-300 uppercase tracking-wider font-semibold"
+                  className="font-body text-xs md:text-sm text-text-muted hover:text-text-primary transition-colors duration-300 uppercase tracking-wider font-semibold"
                 >
                   {link.label}
                 </Link>
@@ -80,7 +80,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Row: Legal & Social links */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-6 border-t border-white/5">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-6 border-t border-text-primary/5">
           <p className="font-body text-xs md:text-sm text-text-muted text-center md:text-left">
             &copy; 2026 B Vishnu Priyan. All rights reserved.
           </p>
@@ -91,7 +91,7 @@ export function Footer() {
               href={SOCIAL_LINKS.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 rounded-full bg-surface border border-white/5 text-text-muted hover:text-accent-violet transition-colors duration-300"
+              className="p-2.5 rounded-full bg-surface border border-text-primary/5 text-text-muted hover:text-accent-violet transition-colors duration-300"
               aria-label="LinkedIn"
             >
               <Linkedin className="w-4 h-4" />
@@ -101,7 +101,7 @@ export function Footer() {
               href={SOCIAL_LINKS.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 rounded-full bg-surface border border-white/5 text-text-muted hover:text-accent-violet transition-colors duration-300"
+              className="p-2.5 rounded-full bg-surface border border-text-primary/5 text-text-muted hover:text-accent-violet transition-colors duration-300"
               aria-label="GitHub"
             >
               <Github className="w-4 h-4" />
@@ -109,7 +109,7 @@ export function Footer() {
             <m.a
               whileHover={{ scale: 1.1 }}
               href={SOCIAL_LINKS.email}
-              className="p-2.5 rounded-full bg-surface border border-white/5 text-text-muted hover:text-accent-violet transition-colors duration-300"
+              className="p-2.5 rounded-full bg-surface border border-text-primary/5 text-text-muted hover:text-accent-violet transition-colors duration-300"
               aria-label="Email"
             >
               <Mail className="w-4 h-4" />
@@ -127,7 +127,7 @@ export function Footer() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             onClick={handleScrollTop}
-            className="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-gradient-to-r from-accent-violet to-accent-indigo text-white flex items-center justify-center z-50 shadow-[0_0_20px_rgba(139,92,246,0.35)] hover:shadow-[0_0_35px_rgba(139,92,246,0.65)] hover:scale-105 transition-all duration-300 focus:outline-none cursor-pointer"
+            className="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-gradient-to-r from-accent-violet to-accent-indigo text-text-primary flex items-center justify-center z-50 shadow-[0_0_20px_rgba(139,92,246,0.35)] hover:shadow-[0_0_35px_rgba(139,92,246,0.65)] hover:scale-105 transition-all duration-300 focus:outline-none cursor-pointer"
             aria-label="Scroll to top"
           >
             <ArrowUp className="w-5 h-5" />

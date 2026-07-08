@@ -70,7 +70,7 @@ export function Projects() {
                   className="w-full lg:w-[55%] flex-shrink-0 order-1 lg:order-none"
                 >
                   <GlowCard 
-                    className="relative w-full aspect-video bg-surface-elevated rounded-2xl border border-white/10 hover:border-accent-violet/40 hover:scale-[1.02] transition-all duration-500 overflow-hidden group flex items-center justify-center p-0 cursor-pointer"
+                    className="relative w-full aspect-video bg-surface-elevated rounded-2xl border border-text-primary/10 hover:border-accent-violet/40 hover:scale-[1.02] transition-all duration-500 overflow-hidden group flex items-center justify-center p-0 cursor-pointer"
                     glowColor="rgba(139, 92, 246, 0.12)"
                   >
                     {project.image ? (
@@ -108,12 +108,12 @@ export function Projects() {
                   className="w-full lg:w-[45%] flex flex-col gap-5 relative text-left"
                 >
                   {/* Large background serial number */}
-                  <span className="absolute -top-16 -left-4 font-display text-[120px] md:text-[180px] font-bold text-white/5 select-none pointer-events-none leading-none">
+                  <span className="absolute -top-16 -left-4 font-display text-[120px] md:text-[180px] font-bold text-text-primary/5 select-none pointer-events-none leading-none">
                     {projectNumber}
                   </span>
 
                   {/* Title */}
-                  <h3 className="font-display text-3xl md:text-4xl font-bold text-white relative z-10">
+                  <h3 className="font-display text-3xl md:text-4xl font-bold text-text-primary relative z-10">
                     {project.title.split(' — ')[1] || project.title}
                   </h3>
 
@@ -127,7 +127,7 @@ export function Projects() {
                     {project.tech.map((t) => (
                       <span
                         key={t}
-                        className="font-mono text-[10px] text-text-muted bg-surface border border-white/10 rounded-full px-3 py-1"
+                        className="font-mono text-[10px] text-text-muted bg-surface border border-text-primary/10 rounded-full px-3 py-1"
                       >
                         {t}
                       </span>
@@ -135,13 +135,13 @@ export function Projects() {
                   </div>
 
                   {/* CTA link row */}
-                  <div className="flex items-center gap-6 mt-4 relative z-10 pt-4 border-t border-white/5">
+                  <div className="flex items-center gap-6 mt-4 relative z-10 pt-4 border-t border-text-primary/5">
                     {project.github && (
                       <a
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-xs font-mono font-semibold text-text-muted hover:text-white transition-colors duration-300"
+                        className="inline-flex items-center gap-2 text-xs font-mono font-semibold text-text-muted hover:text-text-primary transition-colors duration-300"
                       >
                         <Github className="w-4 h-4" />
                         GitHub Repository
@@ -153,7 +153,7 @@ export function Projects() {
                         href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-xs font-mono font-semibold text-accent-violet hover:text-white transition-colors duration-300"
+                        className="inline-flex items-center gap-2 text-xs font-mono font-semibold text-accent-violet hover:text-text-primary transition-colors duration-300"
                       >
                         <ExternalLink className="w-4 h-4" />
                         Live Demo
@@ -171,7 +171,7 @@ export function Projects() {
         {/* ========================================================================= */}
         {/* PART B: Other Projects Grid                                               */}
         {/* ========================================================================= */}
-        <div className="w-full border-t border-white/5 pt-20">
+        <div className="w-full border-t border-text-primary/5 pt-20">
           <h3 className="font-mono text-xl font-bold text-text-muted tracking-wider uppercase mb-10 text-center md:text-left">
             More Projects
           </h3>
@@ -193,14 +193,14 @@ export function Projects() {
                   className="w-full h-full"
                 >
                   <GlowCard 
-                    className="h-full flex flex-col justify-between p-6 bg-surface border border-white/5 hover:border-accent-violet/40 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(139,92,246,0.15)] transition-all duration-500 rounded-2xl group cursor-pointer"
+                    className="h-full flex flex-col justify-between p-6 bg-surface border border-text-primary/5 hover:border-accent-violet/40 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(139,92,246,0.15)] transition-all duration-500 rounded-2xl group cursor-pointer"
                     glowColor="rgba(139, 92, 246, 0.08)"
                   >
                     
                     <div>
                       {/* Header Row: Category Badge & Project Number */}
                       <div className="flex items-center justify-between mb-6">
-                        <span className="font-mono text-[9px] text-text-muted bg-background border border-white/5 px-2.5 py-1 rounded-full uppercase tracking-wider">
+                        <span className="font-mono text-[9px] text-text-muted bg-background border border-text-primary/5 px-2.5 py-1 rounded-full uppercase tracking-wider">
                           {project.category}
                         </span>
                         <span className="font-display text-base font-bold text-text-faint/45">
@@ -209,7 +209,7 @@ export function Projects() {
                       </div>
 
                       {/* Title */}
-                      <h4 className="font-display text-xl font-bold text-white mb-3 group-hover:text-accent-violet transition-colors">
+                      <h4 className="font-display text-xl font-bold text-text-primary mb-3 group-hover:text-accent-violet transition-colors">
                         {project.title.split(' — ')[0]}
                       </h4>
 
@@ -233,7 +233,7 @@ export function Projects() {
                       </div>
 
                       {/* Footer Row: Actions */}
-                      <div className="flex items-center gap-2 pt-4 border-t border-white/5 text-xs font-mono font-semibold text-text-muted group-hover:text-white transition-colors duration-300">
+                      <div className="flex items-center gap-2 pt-4 border-t border-text-primary/5 text-xs font-mono font-semibold text-text-muted group-hover:text-text-primary transition-colors duration-300">
                         <Github className="w-3.5 h-3.5" />
                         <span>View Project</span>
                       </div>

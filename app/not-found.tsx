@@ -23,7 +23,7 @@ export default function NotFound() {
 
       <div className="relative z-10 text-center flex flex-col items-center gap-6">
         {/* Big 404 */}
-        <span className="font-display text-[12rem] md:text-[16rem] font-bold leading-none text-white/5 select-none">
+        <span className="font-display text-[12rem] md:text-[16rem] font-bold leading-none text-text-primary/5 select-none">
           404
         </span>
 
@@ -32,7 +32,7 @@ export default function NotFound() {
           <span className="font-mono text-xs text-accent-violet uppercase tracking-widest border border-accent-violet/30 bg-accent-violet/10 px-4 py-1.5 rounded-full">
             Page Not Found
           </span>
-          <h1 className="font-display text-3xl md:text-4xl font-bold text-white">
+          <h1 className="font-display text-3xl md:text-4xl font-bold text-text-primary">
             Lost in the void?
           </h1>
           <p className="font-body text-base text-text-muted max-w-sm">
@@ -41,13 +41,13 @@ export default function NotFound() {
           <div className="flex flex-wrap gap-3 justify-center mt-2">
             <Link
               href="/"
-              className="px-6 py-3 rounded-full bg-gradient-to-r from-accent-violet to-accent-indigo text-white font-mono text-xs font-bold uppercase tracking-wider hover:brightness-110 transition-all active:scale-95"
+              className="px-6 py-3 rounded-full bg-gradient-to-r from-accent-violet to-accent-indigo text-text-primary font-mono text-xs font-bold uppercase tracking-wider hover:brightness-110 transition-all active:scale-95"
             >
               Go Home
             </Link>
             <Link
               href="/projects"
-              className="px-6 py-3 rounded-full border border-white/10 text-white font-mono text-xs font-bold uppercase tracking-wider hover:border-white/30 transition-all"
+              className="px-6 py-3 rounded-full border border-text-primary/10 text-text-primary font-mono text-xs font-bold uppercase tracking-wider hover:border-text-primary/30 transition-all"
             >
               View Projects
             </Link>

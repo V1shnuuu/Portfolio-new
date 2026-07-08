@@ -36,7 +36,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
       'Blockchain': 'text-accent-pink border-accent-pink/30 bg-accent-pink/10',
       'UI/UX Design': 'text-accent-indigo border-accent-indigo/30 bg-accent-indigo/10',
     };
-    return map[category] || 'text-text-muted border-white/10 bg-white/5';
+    return map[category] || 'text-text-muted border-text-primary/10 bg-slate-900/5';
   };
 
   return (
@@ -56,7 +56,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
       className="cursor-pointer h-full"
     >
       <GlowCard
-        className="h-full flex flex-col gap-4 p-6 bg-surface border border-white/5 hover:border-accent-violet/30 rounded-2xl transition-colors duration-300"
+        className="h-full flex flex-col gap-4 p-6 bg-surface border border-text-primary/5 hover:border-accent-violet/30 rounded-2xl transition-colors duration-300"
         glowColor="rgba(139,92,246,0.1)"
       >
         {/* Top: Image Area */}
@@ -70,7 +70,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
               className="object-cover transition-transform duration-700 group-hover/img:scale-105"
             />
           ) : (
-            <span className="font-mono text-5xl font-bold text-white/5">
+            <span className="font-mono text-5xl font-bold text-text-primary/5">
               {project.category.slice(0, 2).toUpperCase()}
             </span>
           )}
@@ -81,7 +81,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
             </span>
           </div>
           <div className="absolute top-3 right-3 z-10">
-            <span className="font-mono text-[9px] text-text-faint border border-white/5 px-2 py-1 rounded-full bg-background/50 backdrop-blur-sm">
+            <span className="font-mono text-[9px] text-text-faint border border-text-primary/5 px-2 py-1 rounded-full bg-background/50 backdrop-blur-sm">
               {project.year}
             </span>
           </div>
@@ -89,7 +89,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
 
         {/* Content */}
         <div className="flex flex-col gap-2 flex-1">
-          <h3 className="font-display text-lg font-bold text-white group-hover:text-accent-violet transition-colors">
+          <h3 className="font-display text-lg font-bold text-text-primary group-hover:text-accent-violet transition-colors">
             {project.shortTitle}
           </h3>
           <p className="font-body text-sm text-text-muted leading-relaxed line-clamp-2">
@@ -112,8 +112,8 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
         </div>
 
         {/* Footer actions */}
-        <div className="flex items-center justify-between pt-3 border-t border-white/5">
-          <span className="font-mono text-xs text-text-faint flex items-center gap-1.5 hover:text-white transition-colors">
+        <div className="flex items-center justify-between pt-3 border-t border-text-primary/5">
+          <span className="font-mono text-xs text-text-faint flex items-center gap-1.5 hover:text-text-primary transition-colors">
             View Details <ArrowUpRight className="w-3.5 h-3.5" />
           </span>
           <div className="flex items-center gap-3">
@@ -123,7 +123,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={e => e.stopPropagation()}
-                className="text-text-faint hover:text-white transition-colors"
+                className="text-text-faint hover:text-text-primary transition-colors"
                 aria-label="GitHub"
               >
                 <Github className="w-4 h-4" />
@@ -182,7 +182,7 @@ export default function ProjectsPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight mb-4"
+                className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary tracking-tight mb-4"
               >
                 All Projects
               </m.h1>

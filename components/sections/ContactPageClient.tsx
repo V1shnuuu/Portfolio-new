@@ -66,15 +66,15 @@ function GeneralInquiryForm() {
     }
   };
 
-  const inputClass = "w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white text-sm placeholder:text-text-faint focus:border-accent-violet/60 focus:ring-1 focus:ring-accent-violet/20 focus:outline-none transition-all duration-200";
+  const inputClass = "w-full bg-slate-900/5 border border-text-primary/10 rounded-xl p-4 text-text-primary text-sm placeholder:text-text-faint focus:border-accent-violet/60 focus:ring-1 focus:ring-accent-violet/20 focus:outline-none transition-all duration-200";
 
   if (submitted) {
     return (
       <div className="flex flex-col items-center justify-center text-center py-16 gap-4">
         <CheckCircle2 className="w-12 h-12 text-accent-violet" />
-        <h4 className="font-display text-xl font-bold text-white">Message Sent!</h4>
+        <h4 className="font-display text-xl font-bold text-text-primary">Message Sent!</h4>
         <p className="font-body text-sm text-text-muted max-w-xs">I'll get back to you within 24 hours.</p>
-        <button onClick={() => setSubmitted(false)} className="mt-2 text-xs font-mono text-text-muted hover:text-white transition-colors">
+        <button onClick={() => setSubmitted(false)} className="mt-2 text-xs font-mono text-text-muted hover:text-text-primary transition-colors">
           Send another
         </button>
       </div>
@@ -89,7 +89,7 @@ function GeneralInquiryForm() {
       </div>
       <input type="text" value={form.subject} onChange={e => setForm({...form, subject: e.target.value})} placeholder="Subject (Optional)" className={inputClass} />
       <textarea required rows={5} value={form.message} onChange={e => setForm({...form, message: e.target.value})} placeholder="Your Message" className={`${inputClass} resize-none`} />
-      <button type="submit" disabled={submitting} className="w-full bg-gradient-to-r from-accent-violet to-accent-indigo text-white font-mono text-xs font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:brightness-110 active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:pointer-events-none uppercase tracking-wider">
+      <button type="submit" disabled={submitting} className="w-full bg-gradient-to-r from-accent-violet to-accent-indigo text-text-primary font-mono text-xs font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:brightness-110 active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:pointer-events-none uppercase tracking-wider">
         {submitting ? <><Loader2 className="w-4 h-4 animate-spin" />Sending...</> : <><Send className="w-4 h-4" />Send Message</>}
       </button>
     </form>
@@ -140,13 +140,13 @@ function NewsletterForm() {
     }
   };
 
-  const inputClass = "w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white text-sm placeholder:text-text-faint focus:border-accent-cyan/60 focus:ring-1 focus:ring-accent-cyan/20 focus:outline-none transition-all duration-200";
+  const inputClass = "w-full bg-slate-900/5 border border-text-primary/10 rounded-xl p-4 text-text-primary text-sm placeholder:text-text-faint focus:border-accent-cyan/60 focus:ring-1 focus:ring-accent-cyan/20 focus:outline-none transition-all duration-200";
 
   if (submitted) {
     return (
       <div className="flex flex-col items-center justify-center text-center py-16 gap-4">
         <CheckCircle2 className="w-12 h-12 text-accent-cyan" />
-        <h4 className="font-display text-xl font-bold text-white">You're subscribed!</h4>
+        <h4 className="font-display text-xl font-bold text-text-primary">You're subscribed!</h4>
         <p className="font-body text-sm text-text-muted max-w-xs">Welcome to the AI Insights newsletter. First issue drops next month.</p>
       </div>
     );
@@ -155,7 +155,7 @@ function NewsletterForm() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <div className="bg-accent-cyan/5 border border-accent-cyan/20 rounded-xl p-4 mb-2">
-        <h4 className="font-display text-base font-bold text-white mb-1">AI Insights Newsletter</h4>
+        <h4 className="font-display text-base font-bold text-text-primary mb-1">AI Insights Newsletter</h4>
         <p className="font-body text-xs text-text-muted">Monthly digest on AI, ML, and creative development. No spam — just signal.</p>
       </div>
       <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Your Name (Optional)" className={inputClass} />
@@ -187,7 +187,7 @@ export function ContactPageClient() {
               Get in Touch
             </m.p>
             <m.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-display text-5xl md:text-6xl font-bold text-white tracking-tight mb-4">
+              className="font-display text-5xl md:text-6xl font-bold text-text-primary tracking-tight mb-4">
               Let's Build
               <br />
               <span className="text-gradient">Something Great</span>
@@ -219,7 +219,7 @@ export function ContactPageClient() {
                       <div>
                         <span className="font-mono text-[9px] text-text-faint uppercase tracking-wider block">{m.label}</span>
                         <a href={m.href} target={m.label !== 'Email' ? '_blank' : undefined} rel="noopener noreferrer"
-                          className="font-body text-sm text-white hover:text-accent-violet transition-colors">
+                          className="font-body text-sm text-text-primary hover:text-accent-violet transition-colors">
                           {m.value}
                         </a>
                       </div>
@@ -232,20 +232,20 @@ export function ContactPageClient() {
               <a
                 href={RESUME_URL}
                 download
-                className="flex items-center gap-3 p-4 rounded-xl border border-white/10 hover:border-accent-violet/40 hover:bg-accent-violet/5 transition-all group"
+                className="flex items-center gap-3 p-4 rounded-xl border border-text-primary/10 hover:border-accent-violet/40 hover:bg-accent-violet/5 transition-all group"
               >
-                <span className="p-2 rounded-lg bg-white/5">
+                <span className="p-2 rounded-lg bg-slate-900/5">
                   <Users className="w-4 h-4 text-text-muted group-hover:text-accent-violet transition-colors" />
                 </span>
                 <div>
-                  <div className="font-mono text-xs font-bold text-white group-hover:text-accent-violet transition-colors">Download Resume</div>
+                  <div className="font-mono text-xs font-bold text-text-primary group-hover:text-accent-violet transition-colors">Download Resume</div>
                   <div className="font-body text-[10px] text-text-faint">PDF · Updated 2025</div>
                 </div>
                 <span className="ml-auto font-mono text-xs text-text-faint group-hover:text-accent-violet transition-colors">↓</span>
               </a>
 
               {/* Availability note */}
-              <div className="p-4 rounded-xl bg-surface border border-white/5">
+              <div className="p-4 rounded-xl bg-surface border border-text-primary/5">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="w-2 h-2 rounded-full bg-accent-cyan animate-ping" />
                   <span className="font-mono text-[9px] text-accent-cyan uppercase tracking-wider">Available</span>
@@ -274,8 +274,8 @@ export function ContactPageClient() {
                       onClick={() => setActiveTab(tab.id)}
                       className={`relative flex items-center gap-2 flex-shrink-0 px-4 py-2.5 rounded-xl font-mono text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
                         isActive
-                          ? 'bg-accent-violet/10 border border-accent-violet/40 text-white'
-                          : 'border border-white/10 text-text-muted hover:text-white hover:border-white/20'
+                          ? 'bg-accent-violet/10 border border-accent-violet/40 text-text-primary'
+                          : 'border border-text-primary/10 text-text-muted hover:text-text-primary hover:border-text-primary/20'
                       }`}
                     >
                       <Icon className="w-3.5 h-3.5" />
@@ -286,7 +286,7 @@ export function ContactPageClient() {
               </div>
 
               {/* Form panel */}
-              <div className="bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8">
+              <div className="bg-white/[0.02] backdrop-blur-xl border border-text-primary/10 rounded-2xl p-6 md:p-8">
                 <AnimatePresence mode="wait">
                   <m.div
                     key={activeTab}

@@ -30,7 +30,7 @@ export function ProjectDetailClient({ project, relatedProjects }: ProjectDetailC
           </span>
           <span className="font-mono text-[10px] text-text-faint">{project.year}</span>
         </div>
-        <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">
+        <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary tracking-tight">
           {project.shortTitle}
         </h1>
         <p className="font-body text-lg text-text-muted leading-relaxed max-w-2xl">
@@ -39,8 +39,8 @@ export function ProjectDetailClient({ project, relatedProjects }: ProjectDetailC
       </div>
 
       {/* Hero image placeholder */}
-      <div className="w-full aspect-video bg-surface-elevated rounded-2xl border border-white/10 flex items-center justify-center overflow-hidden relative">
-        <span className="font-mono text-[10rem] font-bold text-white/5 select-none">
+      <div className="w-full aspect-video bg-surface-elevated rounded-2xl border border-text-primary/10 flex items-center justify-center overflow-hidden relative">
+        <span className="font-mono text-[10rem] font-bold text-text-primary/5 select-none">
           {project.category.slice(0, 2).toUpperCase()}
         </span>
         <div className="absolute inset-0 bg-gradient-to-t from-surface-elevated/50 to-transparent" />
@@ -61,9 +61,9 @@ export function ProjectDetailClient({ project, relatedProjects }: ProjectDetailC
               <m.div
                 key={idx}
                 variants={fadeUp}
-                className="bg-surface border border-white/5 rounded-xl p-5 text-center"
+                className="bg-surface border border-text-primary/5 rounded-xl p-5 text-center"
               >
-                <div className="font-display text-3xl font-bold text-white">
+                <div className="font-display text-3xl font-bold text-text-primary">
                   <CountUp
                     value={parseFloat(metric.value.replace(/[^0-9.]/g, '')) || 0}
                     suffix={metric.suffix}
@@ -89,7 +89,7 @@ export function ProjectDetailClient({ project, relatedProjects }: ProjectDetailC
           {project.tech.map(t => (
             <span
               key={t}
-              className="font-mono text-xs text-text-muted bg-surface border border-white/10 rounded-full px-4 py-1.5"
+              className="font-mono text-xs text-text-muted bg-surface border border-text-primary/10 rounded-full px-4 py-1.5"
             >
               {t}
             </span>
@@ -98,10 +98,10 @@ export function ProjectDetailClient({ project, relatedProjects }: ProjectDetailC
       </div>
 
       {/* CTA Row */}
-      <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-white/5">
+      <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-text-primary/5">
         <Link
           href="/projects"
-          className="inline-flex items-center gap-2 text-text-muted hover:text-white font-mono text-xs transition-colors"
+          className="inline-flex items-center gap-2 text-text-muted hover:text-text-primary font-mono text-xs transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Projects
@@ -111,7 +111,7 @@ export function ProjectDetailClient({ project, relatedProjects }: ProjectDetailC
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 hover:border-white/30 text-text-muted hover:text-white font-mono text-xs transition-all"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-text-primary/10 hover:border-text-primary/30 text-text-muted hover:text-text-primary font-mono text-xs transition-all"
           >
             <Github className="w-4 h-4" />
             View Code
@@ -122,7 +122,7 @@ export function ProjectDetailClient({ project, relatedProjects }: ProjectDetailC
             href={project.live}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-accent-violet to-accent-indigo text-white font-mono text-xs font-semibold hover:brightness-110 transition-all shadow-glow-violet"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-accent-violet to-accent-indigo text-text-primary font-mono text-xs font-semibold hover:brightness-110 transition-all shadow-glow-violet"
           >
             <ExternalLink className="w-4 h-4" />
             Live Demo
@@ -141,14 +141,14 @@ export function ProjectDetailClient({ project, relatedProjects }: ProjectDetailC
 
       {/* Related Projects */}
       {relatedProjects.length > 0 && (
-        <div className="pt-8 border-t border-white/5">
-          <h2 className="font-display text-2xl font-bold text-white mb-6">Related Projects</h2>
+        <div className="pt-8 border-t border-text-primary/5">
+          <h2 className="font-display text-2xl font-bold text-text-primary mb-6">Related Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {relatedProjects.map(rp => (
               <Link key={rp.id} href={`/projects/${rp.slug}`}>
-                <GlowCard className="h-full p-5 bg-surface border border-white/5 hover:border-accent-violet/30 rounded-xl transition-colors cursor-pointer">
+                <GlowCard className="h-full p-5 bg-surface border border-text-primary/5 hover:border-accent-violet/30 rounded-xl transition-colors cursor-pointer">
                   <span className="font-mono text-[9px] text-text-faint uppercase tracking-wider">{rp.category}</span>
-                  <h4 className="font-display text-base font-bold text-white mt-1 hover:text-accent-violet transition-colors">
+                  <h4 className="font-display text-base font-bold text-text-primary mt-1 hover:text-accent-violet transition-colors">
                     {rp.shortTitle}
                   </h4>
                   <p className="font-body text-xs text-text-muted mt-1 line-clamp-2">{rp.description}</p>

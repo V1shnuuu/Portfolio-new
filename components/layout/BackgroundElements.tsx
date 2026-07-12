@@ -19,12 +19,12 @@ export default function BackgroundElements() {
 
   return (
     <div
-      className="fixed inset-0 w-screen h-screen z-[-1] overflow-hidden pointer-events-none bg-slate-50/50"
+      className="fixed inset-0 w-screen h-screen z-[-1] overflow-hidden pointer-events-none"
       aria-hidden="true"
     >
       {/* 1. Global Light Noise Overlay */}
       <div 
-        className="absolute inset-0 opacity-[0.4] mix-blend-multiply"
+        className="absolute inset-0 opacity-[0.4] mix-blend-screen"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
         }}
@@ -58,28 +58,28 @@ export default function BackgroundElements() {
       {/* 4. Floating Geometric Shapes (Increased Opacity & Scale) */}
       {/* Shape 1: Cyan Polygon */}
       <motion.div
-        className="absolute top-[5%] left-[5%] w-[500px] h-[500px] rounded-full border-[1px] border-accent-cyan/20 bg-gradient-to-br from-accent-cyan/15 to-transparent mix-blend-multiply"
+        className="absolute top-[5%] left-[5%] w-[500px] h-[500px] rounded-full border-[1px] border-accent-cyan/20 bg-gradient-to-br from-accent-cyan/15 to-transparent mix-blend-screen"
         animate={floatAnimation(25, -50, 30, 20)}
         style={{ filter: 'blur(30px)' }}
       />
 
       {/* Shape 2: Violet Blob */}
       <motion.div
-        className="absolute top-[35%] right-[0%] w-[600px] h-[400px] rounded-[100px] bg-gradient-to-tr from-accent-violet/15 to-transparent mix-blend-multiply"
+        className="absolute top-[35%] right-[0%] w-[600px] h-[400px] rounded-[100px] bg-gradient-to-tr from-accent-violet/15 to-transparent mix-blend-screen"
         animate={floatAnimation(20, 60, -40, -15)}
         style={{ filter: 'blur(40px)' }}
       />
 
       {/* Shape 3: Pink Accent */}
       <motion.div
-        className="absolute bottom-[0%] left-[20%] w-[450px] h-[450px] rounded-full bg-gradient-to-t from-accent-pink/15 to-transparent border-[1px] border-accent-pink/20 mix-blend-multiply"
+        className="absolute bottom-[0%] left-[20%] w-[450px] h-[450px] rounded-full bg-gradient-to-t from-accent-pink/15 to-transparent border-[1px] border-accent-pink/20 mix-blend-screen"
         animate={floatAnimation(22, -40, -30, 25)}
         style={{ filter: 'blur(35px)' }}
       />
 
       {/* Shape 4: Extra Indigo Accent for depth */}
       <motion.div
-        className="absolute top-[60%] left-[60%] w-[350px] h-[350px] rounded-full bg-gradient-to-bl from-accent-indigo/15 to-transparent mix-blend-multiply"
+        className="absolute top-[60%] left-[60%] w-[350px] h-[350px] rounded-full bg-gradient-to-bl from-accent-indigo/15 to-transparent mix-blend-screen"
         animate={floatAnimation(28, 40, 40, -20)}
         style={{ filter: 'blur(40px)' }}
       />

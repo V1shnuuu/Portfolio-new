@@ -47,11 +47,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="light font-body" style={{ colorScheme: 'light' }} suppressHydrationWarning>
+    <html lang="en" className="dark font-body" style={{ colorScheme: 'dark' }} suppressHydrationWarning>
       <body className="bg-background text-text-primary antialiased selection:bg-accent-violet/30 selection:text-text-primary">
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="dark"
           enableSystem={false}
           storageKey="vishnu-portfolio-theme"
         >

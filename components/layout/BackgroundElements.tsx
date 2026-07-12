@@ -12,7 +12,7 @@ export default function BackgroundElements() {
     rotate: shouldReduceMotion ? 0 : [0, rotate, 0],
     transition: {
       duration,
-      ease: "easeInOut",
+      ease: "easeInOut" as const,
       repeat: Infinity,
     },
   });
